@@ -8,7 +8,6 @@ import { TechStackSection } from './components/TechStackSection';
 import { ServicesSection } from './components/ServicesSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ExperienceSection } from './components/ExperienceSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { TerminalView } from './components/TerminalView';
@@ -34,7 +33,6 @@ function MainAppContent() {
         <ServicesSection />
         <ProjectsSection />
         <ExperienceSection />
-        <TestimonialsSection />
         <ContactSection />
       </main>
 
