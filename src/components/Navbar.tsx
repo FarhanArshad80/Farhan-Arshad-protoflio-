@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
         {/* Brand & Name */}
         <a href="#" className="flex items-center gap-3 group" id="brand-logo-link">
           <motion.div
