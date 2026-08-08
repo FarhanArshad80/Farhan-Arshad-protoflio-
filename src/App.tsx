@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutSection } from './components/AboutSection';
 import { TechStackSection } from './components/TechStackSection';
+import { ServicesSection } from './components/ServicesSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ExperienceSection } from './components/ExperienceSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
@@ -30,6 +31,7 @@ function MainAppContent() {
         <Hero />
         <AboutSection />
         <TechStackSection />
+        <ServicesSection />
         <ProjectsSection />
         <ExperienceSection />
         <TestimonialsSection />
@@ -39,7 +41,7 @@ function MainAppContent() {
       {/* Footer */}
       <Footer />
 
-      {/* Interactive Overlays & Hire Me Modal */}
+      {/* Shared Hire Me / Enquiry Modal */}
       <HireMeModal />
       <TerminalView />
       <CommandPalette />

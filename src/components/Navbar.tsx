@@ -1,34 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Palette, Menu, X, Sparkles, Check, ChevronDown, Briefcase } from 'lucide-react';
-import { useTheme, THEME_OPTIONS } from '../context/ThemeContext';
+import { Menu, X, Briefcase } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 import { PORTFOLIO_DATA } from '../data/portfolio';
 
 const NAV_LINKS = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
+  { href: '#services', label: 'Services' },
   { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#contact', label: 'Contact' },
 ];
 
 export const Navbar: React.FC = () => {
-  const {
-    currentTheme,
-    setThemeId,
-    setHireMeModalOpen,
-  } = useTheme();
+  const { currentTheme, setHireMeModalOpen } = useTheme();
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [themeDropdownOpen, setThemeDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Determine active section
       const sections = NAV_LINKS.map((link) => link.href.substring(1));
       for (const section of [...sections].reverse()) {
         const el = document.getElementById(section);
@@ -74,8 +69,6 @@ export const Navbar: React.FC = () => {
             <span className="font-extrabold text-base tracking-tight group-hover:text-cyan-400 transition-colors">
               {PORTFOLIO_DATA.profile.name}
             </span>
-
-            {/* Animated "Full Stack Developer" badge */}
             <motion.span
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
@@ -90,7 +83,6 @@ export const Navbar: React.FC = () => {
                 />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400"></span>
               </span>
-
               <motion.span
                 className="bg-clip-text text-transparent bg-[length:200%_auto]"
                 style={{
@@ -111,15 +103,12 @@ export const Navbar: React.FC = () => {
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
-              
               <a
                 key={link.href}
                 href={link.href}
                 id={`nav-link-${link.href.substring(1)}`}
                 className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors ${
-                  isActive
-                    ? 'text-white'
-                    : 'text-slate-400 hover:text-slate-100'
+                  isActive ? 'text-white' : 'text-slate-400 hover:text-slate-100'
                 }`}
               >
                 {isActive && (
@@ -135,70 +124,9 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Actions & Utilities */}
+        {/* Actions */}
         <div className="flex items-center gap-2">
-          {/* Theme Dropdown Toggle */}
-          <div className="relative">
-            <button
-              onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
-              id="theme-selector-button"
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-xl bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 text-slate-200 transition-colors"
-              title="Change Theme"
-            >
-              <Palette className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="hidden sm:inline">{currentTheme.name}</span>
-              <ChevronDown className="w-3 h-3 text-slate-400" />
-            </button>
-
-            <AnimatePresence>
-              {themeDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className="absolute right-0 mt-2 w-56 rounded-2xl bg-slate-900 border border-slate-800 p-2 shadow-2xl z-50 backdrop-blur-2xl"
-                >
-                  <div className="px-3 py-1.5 text-xs font-mono text-slate-400 border-b border-slate-800 mb-1 flex items-center justify-between">
-                    <span>SELECT THEME</span>
-                    <Sparkles className="w-3 h-3 text-amber-400" />
-                  </div>
-                  {THEME_OPTIONS.map((theme) => (
-                    <button
-                      key={theme.id}
-                      onClick={() => {
-                        setThemeId(theme.id);
-                        setThemeDropdownOpen(false);
-                      }}
-                      id={`theme-option-${theme.id}`}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium text-left transition-colors ${
-                        currentTheme.id === theme.id
-                          ? 'bg-slate-800 text-white font-semibold'
-                          : 'text-slate-300 hover:bg-slate-800/50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center -space-x-1">
-                          {theme.previewColors.map((color, i) => (
-                            <span
-                              key={i}
-                              className="w-3 h-3 rounded-full border border-slate-900"
-                              style={{ backgroundColor: color }}
-                            />
-                          ))}
-                        </div>
-                        <span>{theme.name}</span>
-                      </div>
-                      {currentTheme.id === theme.id && (
-                        <Check className="w-3.5 h-3.5 text-cyan-400" />
-                      )}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* PROMINENT "HIRE ME" BUTTON */}
+          {/* Hire Me Button */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -231,7 +159,6 @@ export const Navbar: React.FC = () => {
             className="md:hidden bg-slate-950/98 border-b border-slate-800 backdrop-blur-2xl px-4 py-4 space-y-3"
           >
             {NAV_LINKS.map((link) => (
-              
               <a
                 key={link.href}
                 href={link.href}
@@ -241,7 +168,7 @@ export const Navbar: React.FC = () => {
                 {link.label}
               </a>
             ))}
-            <div className="pt-3 border-t border-slate-800 flex flex-col gap-2">
+            <div className="pt-3 border-t border-slate-800">
               <button
                 onClick={() => {
                   setHireMeModalOpen(true);
@@ -250,7 +177,7 @@ export const Navbar: React.FC = () => {
                 className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-bold text-white bg-gradient-to-r ${currentTheme.gradientClass} rounded-xl shadow-md`}
               >
                 <Briefcase className="w-4 h-4 text-amber-300" />
-                Hire Me (Select Service)
+                Hire Me
               </button>
             </div>
           </motion.div>
