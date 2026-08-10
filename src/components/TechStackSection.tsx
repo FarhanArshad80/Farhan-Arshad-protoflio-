@@ -60,8 +60,8 @@ export const TechStackSection: React.FC = () => {
               onClick={() => setActiveCategory(cat.id)}
               className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
                 activeCategory === cat.id
-                  ? `bg-slate-900 text-white border-2 border-cyan-500 shadow-lg shadow-cyan-500/20 font-bold`
-                  : 'bg-slate-950/80 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700'
+                  ? `bg-[#111] text-white border-2 border-violet-500 shadow-lg shadow-violet-500/20 font-bold`
+                  : 'bg-[#0d0d0d] text-slate-400 border border-white/[0.07] hover:text-slate-200 hover:border-white/20'
               }`}
             >
               {cat.label}
