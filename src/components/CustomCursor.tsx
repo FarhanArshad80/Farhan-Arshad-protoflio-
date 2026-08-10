@@ -78,7 +78,7 @@ export const CustomCursor: React.FC = () => {
         style={{
           width: isHovering ? 10 : 6,
           height: isHovering ? 10 : 6,
-          backgroundColor: '#7C3AED',
+          backgroundColor: '#f97316',
           opacity: visible ? 1 : 0,
           transition: 'width 0.18s ease, height 0.18s ease, opacity 0.2s ease',
           willChange: 'transform',
@@ -91,8 +91,8 @@ export const CustomCursor: React.FC = () => {
         style={{
           width: isHovering ? 44 : 32,
           height: isHovering ? 44 : 32,
-          border: `1.5px solid ${isHovering ? 'rgba(124,58,237,0.85)' : 'rgba(167,139,250,0.45)'}`,
-          backgroundColor: isHovering ? 'rgba(124,58,237,0.07)' : 'transparent',
+          border: `1.5px solid ${isHovering ? 'rgba(249,115,22,0.85)' : 'rgba(249,115,22,0.4)'}`,
+          backgroundColor: isHovering ? 'rgba(249,115,22,0.07)' : 'transparent',
           opacity: visible ? 1 : 0,
           transition:
             'width 0.22s ease, height 0.22s ease, border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease',
