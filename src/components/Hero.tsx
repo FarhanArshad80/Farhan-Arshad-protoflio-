@@ -11,6 +11,7 @@ import {
   Mail, Calendar, FolderGit2,
   ThumbsUp, Users,
 } from 'lucide-react';
+import { generateCV } from '../utils/generateCV';
 import { PORTFOLIO_DATA } from '../data/portfolio';
 import { useTheme } from '../context/ThemeContext';
 
@@ -220,7 +221,7 @@ export const Hero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35 }}
-              className="flex items-center gap-2 text-lg sm:text-xl font-mono font-bold text-indigo-400"
+              className="flex items-center gap-2 text-lg sm:text-xl font-mono font-bold text-violet-400"
             >
               {ROTATING_ROLES[roleIndex]}
             </motion.div>
@@ -238,7 +239,7 @@ export const Hero: React.FC = () => {
               <a
                 href={`mailto:${PORTFOLIO_DATA.profile.email}`}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80
-                           border border-slate-800 text-xs font-mono text-indigo-400 hover:text-indigo-300"
+                           border border-white/[0.07] text-xs font-mono text-violet-400 hover:text-violet-300"
               >
                 <Mail className="w-3.5 h-3.5" />
                 {PORTFOLIO_DATA.profile.email}
@@ -264,17 +265,16 @@ export const Hero: React.FC = () => {
 
             {/* CTAs — below */}
             <div className="flex flex-wrap items-center gap-4">
-              <motion.a
+              <motion.button
                 whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-                href="/Farhan-Arshad-CV.pdf"
-                download="Farhan-Arshad-CV.pdf"
+                onClick={generateCV}
                 className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold
                             text-sm text-white bg-gradient-to-r ${currentTheme.gradientClass}
-                            shadow-lg hover:brightness-110 transition-all`}
+                            shadow-lg shadow-violet-500/25 hover:brightness-110 transition-all`}
               >
                 <Download className="w-4 h-4" />
                 Download CV
-              </motion.a>
+              </motion.button>
 
               <motion.a
                 whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}

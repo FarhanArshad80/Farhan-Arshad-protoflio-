@@ -43,7 +43,7 @@ export const ContactSection: React.FC = () => {
                 {/* Email */}
                 <a
                   href={`mailto:${PORTFOLIO_DATA.profile.email}`}
-                  className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 text-cyan-400 hover:border-cyan-500/50 transition-colors group"
+                  className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#0d0d0d] border border-white/[0.07] text-violet-400 hover:border-violet-500/40 transition-colors group"
                 >
                   <Mail className="w-4 h-4 group-hover:scale-110 transition-transform shrink-0" />
                   <span className="truncate">{PORTFOLIO_DATA.profile.email}</span>
@@ -96,7 +96,7 @@ export const ContactSection: React.FC = () => {
               <div className="pt-2">
                 <button
                   onClick={() => setHireMeModalOpen(true)}
-                  className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-white font-bold text-xs bg-gradient-to-r ${currentTheme.gradientClass} shadow-lg shadow-cyan-500/20 hover:brightness-110 transition-all`}
+                  className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-white font-bold text-xs bg-gradient-to-r ${currentTheme.gradientClass} shadow-lg shadow-violet-500/20 hover:brightness-110 transition-all`}
                 >
                   <Briefcase className="w-3.5 h-3.5 text-amber-300" />
                   Hire Me for a Project

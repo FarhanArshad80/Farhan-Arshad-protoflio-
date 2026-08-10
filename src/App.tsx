@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { AnimatePresence } from 'motion/react';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { CanvasBackground } from './components/CanvasBackground';
 import { Navbar } from './components/Navbar';
@@ -13,37 +14,50 @@ import { Footer } from './components/Footer';
 import { TerminalView } from './components/TerminalView';
 import { CommandPalette } from './components/CommandPalette';
 import { HireMeModal } from './components/HireMeModal';
+import { LoadingScreen } from './components/LoadingScreen';
+import { CustomCursor } from './components/CustomCursor';
 
 function MainAppContent() {
   const { currentTheme } = useTheme();
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className={`min-h-screen relative font-sans transition-colors duration-500 ${currentTheme.bgClass}`}>
-      {/* Dynamic particle background */}
-      <CanvasBackground />
+    <>
+      <CustomCursor />
 
-      {/* Main navigation header */}
-      <Navbar />
+      <AnimatePresence>
+        {isLoading && (
+          <LoadingScreen key="loading" onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
 
-      {/* Portfolio sections */}
-      <main className="relative z-10">
-        <Hero />
-        <AboutSection />
-        <TechStackSection />
-        <ServicesSection />
-        <ProjectsSection />
-        <ExperienceSection />
-        <ContactSection />
-      </main>
+      <div className={`min-h-screen relative font-sans transition-colors duration-500 ${currentTheme.bgClass}`}>
+        {/* Dynamic particle background */}
+        <CanvasBackground />
 
-      {/* Footer */}
-      <Footer />
+        {/* Main navigation header */}
+        <Navbar />
 
-      {/* Shared Hire Me / Enquiry Modal */}
-      <HireMeModal />
-      <TerminalView />
-      <CommandPalette />
-    </div>
+        {/* Portfolio sections */}
+        <main className="relative z-10">
+          <Hero />
+          <AboutSection />
+          <TechStackSection />
+          <ServicesSection />
+          <ProjectsSection />
+          <ExperienceSection />
+          <ContactSection />
+        </main>
+
+        {/* Footer */}
+        <Footer />
+
+        {/* Shared Hire Me / Enquiry Modal */}
+        <HireMeModal />
+        <TerminalView />
+        <CommandPalette />
+      </div>
+    </>
   );
 }
 

@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
           <span className="hidden sm:inline text-slate-700">|</span>
 
           <div className="flex items-center gap-1.5 text-slate-400">
-            <Clock className="w-3.5 h-3.5 text-cyan-400" />
+            <Clock className="w-3.5 h-3.5 text-violet-400" />
             <span>
               Lahore, PK:{' '}
               <span className="text-white font-semibold">{localTime || '10:00 AM'}</span> (PKT)
@@ -56,7 +56,7 @@ export const Footer: React.FC = () => {
         <div className="flex items-center gap-4 flex-wrap justify-center">
           <button
             onClick={() => setHireMeModalOpen(true)}
-            className="flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 font-bold transition-colors"
+            className="flex items-center gap-1.5 text-violet-400 hover:text-violet-300 font-bold transition-colors"
           >
             <Briefcase className="w-3.5 h-3.5 text-amber-400" />
             <span>Hire Me</span>
@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
           className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 transition-all hover:scale-105 flex items-center gap-1"
           title="Back to top"
         >
-          <ArrowUp className="w-4 h-4 text-cyan-400" />
+          <ArrowUp className="w-4 h-4 text-violet-400" />
           <span className="hidden sm:inline">Top</span>
         </button>
       </div>
