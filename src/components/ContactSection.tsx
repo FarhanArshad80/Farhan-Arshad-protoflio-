@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Github, Linkedin, Twitter, Sparkles, Briefcase } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin, Twitter, Briefcase } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolio';
 import { useTheme } from '../context/ThemeContext';
 import { EnquiryForm } from './EnquiryForm';
@@ -12,9 +12,10 @@ export const ContactSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400">
-            <Mail className="w-3.5 h-3.5" />
-            <span>LET'S CONNECT</span>
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-px w-8 bg-slate-700" />
+            <span className="text-xs font-mono text-slate-500 tracking-widest uppercase">Let's Connect</span>
+            <div className="h-px w-8 bg-slate-700" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             Reach Out to{' '}
@@ -34,9 +35,8 @@ export const ContactSection: React.FC = () => {
           {/* Left Column: Contact Details */}
           <div className="lg:col-span-4 space-y-6">
             <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-2xl space-y-6 shadow-2xl">
-              <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-400" />
-                <span>Direct Contact</span>
+              <h3 className="text-xl font-bold text-white">
+                Direct Contact
               </h3>
 
               <div className="space-y-3.5 text-xs font-mono">

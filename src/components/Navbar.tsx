@@ -59,42 +59,15 @@ export const Navbar: React.FC = () => {
             className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-indigo-600 to-purple-600 text-white font-extrabold text-base shadow-lg shadow-cyan-500/20"
           >
             FA
-            <span className="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-slate-900"></span>
-            </span>
           </motion.div>
 
           <div className="flex flex-col">
             <span className="font-extrabold text-base tracking-tight group-hover:text-cyan-400 transition-colors">
               {PORTFOLIO_DATA.profile.name}
             </span>
-            <motion.span
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
-              className="text-[11px] flex items-center gap-1.5 font-mono"
-            >
-              <span className="relative flex h-1.5 w-1.5">
-                <motion.span
-                  className="absolute inline-flex h-full w-full rounded-full bg-cyan-400"
-                  animate={{ scale: [1, 1.8, 1], opacity: [0.8, 0, 0.8] }}
-                  transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400"></span>
-              </span>
-              <motion.span
-                className="bg-clip-text text-transparent bg-[length:200%_auto]"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(90deg, #22d3ee, #818cf8, #a855f7, #22d3ee)',
-                }}
-                animate={{ backgroundPosition: ['0% center', '200% center'] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-              >
-                Full Stack Developer
-              </motion.span>
-            </motion.span>
+            <span className="text-[11px] font-mono text-slate-400">
+              Full Stack Developer
+            </span>
           </div>
         </a>
 

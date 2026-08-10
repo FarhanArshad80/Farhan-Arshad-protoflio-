@@ -23,9 +23,10 @@ export const ProjectsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400">
-            <Layers className="w-3.5 h-3.5" />
-            <span>FEATURED WORK</span>
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-px w-8 bg-slate-700" />
+            <span className="text-xs font-mono text-slate-500 tracking-widest uppercase">Featured Work</span>
+            <div className="h-px w-8 bg-slate-700" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             Production{' '}
