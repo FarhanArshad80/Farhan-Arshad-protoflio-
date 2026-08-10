@@ -51,7 +51,6 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
       timeline: timeline || "Flexible",
     };
 
-    // Read from environment variables (set these in Replit Secrets or .env)
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
@@ -68,8 +67,6 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
     }
 
     try {
-      // @emailjs/browser v4+ expects the 4th argument as an options object
-      // with a `publicKey` field, not a bare string.
       await emailjs.send(serviceId, templateId, templateParams, {
         publicKey: publicKey,
       });
@@ -101,24 +98,24 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-xl bg-[#0d0d0d] border border-white/[0.07] text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500 font-mono";
-  const labelClass = "text-xs font-mono text-slate-400";
+    "w-full px-4 py-3 rounded-xl bg-[#f7f7f5] border border-[#171717]/10 text-sm text-[#171717] placeholder:text-[#9ca3af] focus:outline-none focus:border-orange-500 font-mono";
+  const labelClass = "text-xs font-mono text-[#6b7280]";
 
   if (submitted) {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.92 }}
         animate={{ opacity: 1, scale: 1 }}
-        className={`${compact ? "py-8" : "p-8"} text-center space-y-5 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-2xl shadow-2xl`}
+        className={`${compact ? "py-8" : "p-8"} text-center space-y-5 rounded-3xl bg-white border border-[#171717]/10 shadow-sm`}
       >
-        <div className="w-16 h-16 rounded-full bg-emerald-950 border border-emerald-500/50 text-emerald-400 flex items-center justify-center mx-auto shadow-xl">
+        <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-500 flex items-center justify-center mx-auto shadow-sm">
           <CheckCircle2 className="w-8 h-8 animate-bounce" />
         </div>
-        <h3 className="text-2xl font-bold text-white">Enquiry Sent!</h3>
-        <p className="text-slate-300 max-w-md mx-auto text-sm leading-relaxed">
-          Thank you, <span className="font-semibold text-white">{name}</span>.
+        <h3 className="text-2xl font-bold text-[#171717]">Enquiry Sent!</h3>
+        <p className="text-[#4b5563] max-w-md mx-auto text-sm leading-relaxed">
+          Thank you, <span className="font-semibold text-[#171717]">{name}</span>.
           Your enquiry has been delivered directly to{" "}
-          <span className="text-cyan-400 font-mono">
+          <span className="text-orange-500 font-mono">
             {PORTFOLIO_DATA.profile.email}
           </span>
           .
@@ -135,7 +132,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               setBudget("$500 - $1,500");
               setService(initialService || SERVICES_LIST[0]);
             }}
-            className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-mono text-slate-300 transition-colors"
+            className="px-5 py-2.5 rounded-xl bg-[#f7f7f5] border border-[#171717]/10 hover:border-[#171717]/20 text-xs font-mono text-[#6b7280] transition-colors"
           >
             New Enquiry
           </button>
@@ -145,7 +142,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
   }
 
   return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-2xl shadow-2xl">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#171717]/10 shadow-sm">
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-1.5">
           <label className={labelClass}>SERVICE *</label>
@@ -240,7 +237,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-4 rounded-xl text-white font-bold text-sm bg-gradient-to-r ${currentTheme.gradientClass} shadow-lg shadow-violet-500/20 hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-50`}
+          className={`w-full py-4 rounded-xl text-white font-bold text-sm bg-gradient-to-r ${currentTheme.gradientClass} shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-50`}
         >
           {loading ? (
             <span className="flex items-center gap-2 font-mono text-xs">
@@ -256,14 +253,14 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
         </button>
 
         {errorMessage && (
-          <p className="text-center text-xs text-red-400 font-mono mt-2">
+          <p className="text-center text-xs text-red-500 font-mono mt-2">
             {errorMessage}
           </p>
         )}
 
-        <p className="text-center text-[11px] font-mono text-slate-500">
+        <p className="text-center text-[11px] font-mono text-[#9ca3af]">
           Enquiry will be delivered to{" "}
-          <span className="text-violet-400">{PORTFOLIO_DATA.profile.email}</span>
+          <span className="text-orange-500">{PORTFOLIO_DATA.profile.email}</span>
         </p>
       </form>
     </div>

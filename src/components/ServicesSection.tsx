@@ -72,11 +72,11 @@ export const ServicesSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="flex items-center justify-center gap-3">
-            <div className="h-px w-8 bg-slate-700" />
-            <span className="text-xs font-mono text-slate-500 tracking-widest uppercase">What I Offer</span>
-            <div className="h-px w-8 bg-slate-700" />
+            <div className="h-px w-8 bg-[#171717]/15" />
+            <span className="text-xs font-mono text-[#9ca3af] tracking-widest uppercase">What I Offer</span>
+            <div className="h-px w-8 bg-[#171717]/15" />
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#171717]">
             Services &{' '}
             <span
               className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}
@@ -84,7 +84,7 @@ export const ServicesSection: React.FC = () => {
               Expertise
             </span>
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
+          <p className="text-[#6b7280] text-base sm:text-lg">
             End-to-end software solutions tailored to your business — from ideation and design to
             deployment and ongoing maintenance.
           </p>
@@ -102,26 +102,26 @@ export const ServicesSection: React.FC = () => {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }}
                 whileHover={{ y: -5 }}
-                className="group relative flex flex-col p-6 rounded-3xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-xl hover:border-slate-700 transition-all duration-300 shadow-lg hover:shadow-2xl"
+                className="group relative flex flex-col p-6 rounded-3xl bg-white border border-[#171717]/10 shadow-sm hover:border-orange-500/30 hover:shadow-md transition-all duration-300"
               >
                 {/* Icon badge */}
                 <div
-                  className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${currentTheme.gradientClass} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${currentTheme.gradientClass} flex items-center justify-center mb-5 shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform duration-300`}
                 >
                   <Icon className="w-6 h-6 text-white" />
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed flex-1">
+                <h3 className="text-lg font-bold text-[#171717] mb-2">{service.title}</h3>
+                <p className="text-sm text-[#6b7280] leading-relaxed flex-1">
                   {service.description}
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-slate-800/60">
+                <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-[#171717]/10">
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-0.5 rounded-md bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400"
+                      className="px-2.5 py-0.5 rounded-md bg-[#f7f7f5] border border-[#171717]/10 text-[10px] font-mono text-[#6b7280]"
                     >
                       {tag}
                     </span>

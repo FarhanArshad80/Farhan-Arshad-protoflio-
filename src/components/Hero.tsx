@@ -51,8 +51,6 @@ function useCountUp(end: number, duration = 1.2, startDelay = 0) {
   return { ref, val };
 }
 
-// Removed useTypewriterLoop as per your request
-
 const SNK_W = 60;
 const SNK_H = 320;
 const CARD_W = 118;
@@ -85,9 +83,9 @@ const SnakePanel: React.FC<{ gradientClass: string }> = ({ gradientClass }) => (
     >
       <defs>
         <linearGradient id="snkG" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#22d3ee" />
-          <stop offset="50%" stopColor="#818cf8" />
-          <stop offset="100%" stopColor="#a855f7" />
+          <stop offset="0%" stopColor="#f97316" />
+          <stop offset="50%" stopColor="#fb923c" />
+          <stop offset="100%" stopColor="#fdba74" />
         </linearGradient>
         <filter id="snkGlow" x="-60%" y="-60%" width="220%" height="220%">
           <feGaussianBlur stdDeviation="2.5" result="b" />
@@ -117,7 +115,7 @@ const SnakePanel: React.FC<{ gradientClass: string }> = ({ gradientClass }) => (
           cx={n.x}
           cy={n.y}
           r="5"
-          fill="#0f172a"
+          fill="#f7f7f5"
           stroke="url(#snkG)"
           strokeWidth="2.5"
           filter="url(#snkGlow)"
@@ -138,7 +136,7 @@ const SnakePanel: React.FC<{ gradientClass: string }> = ({ gradientClass }) => (
       return (
         <motion.div
           key={i}
-          className="absolute flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 shadow-lg shadow-black/40"
+          className="absolute flex items-center gap-2 px-3 py-2 rounded-xl bg-white border border-[#171717]/10 shadow-md"
           style={{
             top: n.y,
             left: cardLeft,
@@ -156,7 +154,7 @@ const SnakePanel: React.FC<{ gradientClass: string }> = ({ gradientClass }) => (
             <p className={`text-sm font-black font-mono bg-gradient-to-r ${gradientClass} bg-clip-text text-transparent`}>
               <span ref={ref}>{val}</span>{stat.suffix}
             </p>
-            <p className="text-[9px] text-slate-400 font-medium mt-0.5 whitespace-nowrap">{stat.label}</p>
+            <p className="text-[9px] text-[#6b7280] font-medium mt-0.5 whitespace-nowrap">{stat.label}</p>
           </div>
         </motion.div>
       );
@@ -190,7 +188,7 @@ export const Hero: React.FC = () => {
       className="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden"
     >
       {/* subtle bg glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/8 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         {/* LEFT COLUMN */}
@@ -201,13 +199,13 @@ export const Hero: React.FC = () => {
           className="lg:col-span-6 space-y-6"
         >
           {/* location pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs font-mono text-slate-300">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#171717]/10 text-xs font-mono text-[#6b7280] shadow-sm">
             <span>{PORTFOLIO_DATA.profile.location}</span>
           </div>
 
           {/* Static heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight min-h-[1.2em]">
-            <span className="block text-white">Hi, I'm</span>
+            <span className="block text-[#171717]">Hi, I'm</span>
             <span className={`block bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>
               Farhan Arshad
             </span>
@@ -221,14 +219,14 @@ export const Hero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35 }}
-              className="flex items-center gap-2 text-lg sm:text-xl font-mono font-bold text-violet-400"
+              className="flex items-center gap-2 text-lg sm:text-xl font-mono font-bold text-orange-500"
             >
               {ROTATING_ROLES[roleIndex]}
             </motion.div>
           </div>
 
           {/* bio */}
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
+          <p className="text-[#4b5563] text-base sm:text-lg leading-relaxed max-w-xl">
             {PORTFOLIO_DATA.profile.tagline}
           </p>
 
@@ -238,14 +236,13 @@ export const Hero: React.FC = () => {
             <div className="flex items-center gap-4">
               <a
                 href={`mailto:${PORTFOLIO_DATA.profile.email}`}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80
-                           border border-white/[0.07] text-xs font-mono text-violet-400 hover:text-violet-300"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-[#171717]/10 text-xs font-mono text-orange-500 hover:text-orange-600 shadow-sm"
               >
                 <Mail className="w-3.5 h-3.5" />
                 {PORTFOLIO_DATA.profile.email}
               </a>
 
-              <div className="h-4 w-px bg-slate-800" />
+              <div className="h-4 w-px bg-[#171717]/15" />
               <div className="flex items-center gap-1.5">
                 {[
                   { href: PORTFOLIO_DATA.profile.github, Icon: Github, title: 'GitHub' },
@@ -254,8 +251,7 @@ export const Hero: React.FC = () => {
                 ].map(({ href, Icon, title }) => (
                   <a
                     key={title} href={href} target="_blank" rel="noreferrer" title={title}
-                    className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800
-                               text-slate-400 hover:text-white transition-colors"
+                    className="p-2 rounded-lg bg-white border border-[#171717]/10 text-[#6b7280] hover:text-[#171717] transition-colors shadow-sm"
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -270,7 +266,7 @@ export const Hero: React.FC = () => {
                 onClick={generateCV}
                 className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold
                             text-sm text-white bg-gradient-to-r ${currentTheme.gradientClass}
-                            shadow-lg shadow-violet-500/25 hover:brightness-110 transition-all`}
+                            shadow-lg shadow-orange-500/25 hover:brightness-110 transition-all`}
               >
                 <Download className="w-4 h-4" />
                 Download CV
@@ -280,11 +276,11 @@ export const Hero: React.FC = () => {
                 whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
                 href="#projects"
                 className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold
-                           text-sm text-slate-200 bg-slate-900 hover:bg-slate-800
-                           border border-slate-800 transition-colors"
+                           text-sm text-[#374151] bg-white border border-[#171717]/10 hover:border-[#171717]/20
+                           shadow-sm transition-colors"
               >
                 Explore Projects
-                <ArrowRight className="w-4 h-4 text-indigo-400" />
+                <ArrowRight className="w-4 h-4 text-orange-500" />
               </motion.a>
             </div>
           </div>
@@ -320,12 +316,12 @@ export const Hero: React.FC = () => {
             {/* shadow pulse */}
             <motion.div
               className={`absolute -inset-1 rounded-[1.6rem] bg-gradient-to-br ${currentTheme.gradientClass} blur-md`}
-              animate={{ opacity: [0.4, 0.75, 0.4] }}
+              animate={{ opacity: [0.3, 0.6, 0.3] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             />
 
             {/* profile photo */}
-            <div className="relative w-44 h-60 sm:w-52 sm:h-72 rounded-[1.5rem] overflow-hidden border border-slate-700 shadow-2xl bg-slate-900">
+            <div className="relative w-44 h-60 sm:w-52 sm:h-72 rounded-[1.5rem] overflow-hidden border border-[#171717]/15 shadow-xl bg-[#f0f0ee]">
               <img
                 src={profileImage}
                 alt={PORTFOLIO_DATA.profile.name}
@@ -337,9 +333,9 @@ export const Hero: React.FC = () => {
             <motion.div
               animate={{ y: [0, -4, 0] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-950 border border-slate-700 shadow-lg whitespace-nowrap"
+              className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-[#171717]/15 shadow-md whitespace-nowrap"
             >
-              <span className="text-[9px] font-mono text-slate-300">Available for Hire</span>
+              <span className="text-[9px] font-mono text-[#374151]">Available for Hire</span>
             </motion.div>
           </motion.div>
         </motion.div>
