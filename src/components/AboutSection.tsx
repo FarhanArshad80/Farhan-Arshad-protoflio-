@@ -12,12 +12,13 @@ export const AboutSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400">
-            <User className="w-3.5 h-3.5" />
-            <span>BACKGROUND & EXPERIENCE</span>
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-px w-8 bg-slate-700" />
+            <span className="text-xs font-mono text-slate-500 tracking-widest uppercase">Background &amp; Experience</span>
+            <div className="h-px w-8 bg-slate-700" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-            About <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>{PORTFOLIO_DATA.profile.name}</span>
+            About <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>me</span>
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
             Full Stack Developer specializing in MERN Stack, NestJS microservices, REST APIs, Git/GitHub, deployments, and full project lifecycle maintenance.
@@ -42,9 +43,6 @@ export const AboutSection: React.FC = () => {
                 <div>
                   <h3 className="text-xl font-bold text-white">{PORTFOLIO_DATA.profile.name}</h3>
                   <p className="text-xs font-mono text-cyan-400">{PORTFOLIO_DATA.profile.title}</p>
-                  <span className="inline-block mt-1 text-[11px] font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-2 py-0.5 rounded-md">
-                    {PORTFOLIO_DATA.profile.availability}
-                  </span>
                 </div>
               </div>
 
