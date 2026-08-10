@@ -40,7 +40,7 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#080808] select-none"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#f7f7f5] select-none"
     >
       {/* Profile image + spinning ring */}
       <div className="relative mb-8" style={{ width: 152, height: 152 }}>
@@ -51,20 +51,20 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
           className="absolute inset-0 rounded-full"
           style={{
             background:
-              'conic-gradient(from 0deg, #7C3AED 0%, #A78BFA 45%, transparent 55%, transparent 100%)',
+              'conic-gradient(from 0deg, #f97316 0%, #fb923c 45%, transparent 55%, transparent 100%)',
           }}
         />
         {/* Static dim ring */}
         <div
           className="absolute inset-0 rounded-full"
-          style={{ background: 'conic-gradient(from 0deg, rgba(255,255,255,0.04) 100%)' }}
+          style={{ background: 'conic-gradient(from 0deg, rgba(23,23,23,0.06) 100%)' }}
         />
         {/* Profile photo */}
         <motion.div
           initial={{ scale: 0.75, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.55, ease: 'easeOut' }}
-          className="absolute inset-[5px] rounded-full overflow-hidden border border-white/10 shadow-2xl shadow-violet-900/50"
+          className="absolute inset-[5px] rounded-full overflow-hidden border border-[#171717]/10 shadow-2xl shadow-orange-500/20"
         >
           <img
             src={profileImage}
@@ -79,7 +79,7 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="text-2xl font-extrabold text-white tracking-tight mb-1.5"
+        className="text-2xl font-extrabold text-[#171717] tracking-tight mb-1.5"
       >
         Farhan Arshad
       </motion.h1>
@@ -89,7 +89,7 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, delay: 0.45 }}
-        className="text-[11px] font-mono text-violet-400 tracking-[0.22em] uppercase mb-10"
+        className="text-[11px] font-mono text-orange-500 tracking-[0.22em] uppercase mb-10"
       >
         Full Stack Developer
       </motion.p>
@@ -99,14 +99,14 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.55 }}
-        className="relative w-44 h-px bg-white/10 rounded-full overflow-hidden"
+        className="relative w-44 h-px bg-[#171717]/10 rounded-full overflow-hidden"
       >
         <div
           ref={barRef}
           className="absolute inset-y-0 left-0 rounded-full"
           style={{
             width: '0%',
-            background: 'linear-gradient(90deg, #7C3AED, #A78BFA)',
+            background: 'linear-gradient(90deg, #f97316, #fb923c)',
           }}
         />
       </motion.div>

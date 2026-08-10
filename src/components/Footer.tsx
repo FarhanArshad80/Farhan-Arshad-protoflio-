@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="relative z-10 border-t border-slate-800/80 bg-slate-950 py-12 text-slate-400 text-xs font-mono">
+    <footer className="relative z-10 border-t border-[#171717]/10 bg-[#f7f7f5] py-12 text-[#9ca3af] text-xs font-mono">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Brand & Live Time */}
         <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
@@ -38,16 +38,16 @@ export const Footer: React.FC = () => {
             >
               FA
             </div>
-            <span className="text-slate-200 font-extrabold">{PORTFOLIO_DATA.profile.name}</span>
+            <span className="text-[#171717] font-extrabold">{PORTFOLIO_DATA.profile.name}</span>
           </div>
 
-          <span className="hidden sm:inline text-slate-700">|</span>
+          <span className="hidden sm:inline text-[#171717]/20">|</span>
 
-          <div className="flex items-center gap-1.5 text-slate-400">
-            <Clock className="w-3.5 h-3.5 text-violet-400" />
+          <div className="flex items-center gap-1.5 text-[#9ca3af]">
+            <Clock className="w-3.5 h-3.5 text-orange-500" />
             <span>
               Lahore, PK:{' '}
-              <span className="text-white font-semibold">{localTime || '10:00 AM'}</span> (PKT)
+              <span className="text-[#374151] font-semibold">{localTime || '10:00 AM'}</span> (PKT)
             </span>
           </div>
         </div>
@@ -56,42 +56,42 @@ export const Footer: React.FC = () => {
         <div className="flex items-center gap-4 flex-wrap justify-center">
           <button
             onClick={() => setHireMeModalOpen(true)}
-            className="flex items-center gap-1.5 text-violet-400 hover:text-violet-300 font-bold transition-colors"
+            className="flex items-center gap-1.5 text-orange-500 hover:text-orange-600 font-bold transition-colors"
           >
-            <Briefcase className="w-3.5 h-3.5 text-amber-400" />
+            <Briefcase className="w-3.5 h-3.5" />
             <span>Hire Me</span>
           </button>
 
-          <span className="text-slate-700">•</span>
+          <span className="text-[#171717]/20">•</span>
 
           <a
             href={`mailto:${PORTFOLIO_DATA.profile.email}`}
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 hover:text-[#374151] transition-colors"
           >
             <Mail className="w-3.5 h-3.5" />
             <span>{PORTFOLIO_DATA.profile.email}</span>
           </a>
 
-          <span className="text-slate-700">•</span>
+          <span className="text-[#171717]/20">•</span>
 
           <a
             href={PORTFOLIO_DATA.profile.github}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 hover:text-[#374151] transition-colors"
             title="GitHub"
           >
             <Github className="w-3.5 h-3.5" />
             <span>GitHub</span>
           </a>
 
-          <span className="text-slate-700">•</span>
+          <span className="text-[#171717]/20">•</span>
 
           <a
             href={PORTFOLIO_DATA.profile.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 hover:text-[#374151] transition-colors"
             title="LinkedIn"
           >
             <Linkedin className="w-3.5 h-3.5" />
@@ -103,15 +103,15 @@ export const Footer: React.FC = () => {
         <button
           onClick={scrollToTop}
           id="back-to-top-button"
-          className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 transition-all hover:scale-105 flex items-center gap-1"
+          className="p-2.5 rounded-xl bg-white border border-[#171717]/10 hover:border-[#171717]/20 text-[#374151] transition-all hover:scale-105 flex items-center gap-1"
           title="Back to top"
         >
-          <ArrowUp className="w-4 h-4 text-violet-400" />
+          <ArrowUp className="w-4 h-4 text-orange-500" />
           <span className="hidden sm:inline">Top</span>
         </button>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-900 text-center text-[11px] text-slate-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-[#171717]/10 text-center text-[11px] text-[#9ca3af]">
         © {new Date().getFullYear()} Farhan Arshad • Full Stack MERN & NestJS Developer. All
         rights reserved.
       </div>
