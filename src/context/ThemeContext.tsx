@@ -4,14 +4,14 @@ import { ThemeId, ThemeOption } from '../types';
 export const THEME_OPTIONS: ThemeOption[] = [
   {
     id: 'cyber-neon',
-    name: 'Cyber Neon Slate',
-    bgClass: 'bg-[#0B0F17] text-slate-100',
+    name: 'Professional Dark Navy',
+    bgClass: 'bg-[#0F1117] text-slate-100',
     cardBgClass: 'bg-slate-900/60 border-slate-800/80 backdrop-blur-xl',
-    accentHex: '#00F0FF',
-    textAccentClass: 'text-cyan-400',
-    borderAccentClass: 'border-cyan-500/40',
-    gradientClass: 'from-cyan-500 via-indigo-500 to-purple-600',
-    previewColors: ['#0B0F17', '#00F0FF', '#818CF8'],
+    accentHex: '#6366F1',
+    textAccentClass: 'text-indigo-400',
+    borderAccentClass: 'border-indigo-500/40',
+    gradientClass: 'from-indigo-600 via-blue-600 to-indigo-800',
+    previewColors: ['#0F1117', '#6366F1', '#3B82F6'],
   },
   {
     id: 'emerald-obsidian',

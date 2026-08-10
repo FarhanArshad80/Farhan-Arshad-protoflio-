@@ -7,8 +7,8 @@ import {
   useInView,
 } from 'motion/react';
 import {
-  ArrowRight, Github, Linkedin, Twitter, Sparkles,
-  Mail, Briefcase, Zap, Calendar, FolderGit2,
+  ArrowRight, Github, Linkedin, Twitter, Download,
+  Mail, Calendar, FolderGit2,
   ThumbsUp, Users,
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolio';
@@ -164,7 +164,7 @@ const SnakePanel: React.FC<{ gradientClass: string }> = ({ gradientClass }) => (
 );
 
 export const Hero: React.FC = () => {
-  const { currentTheme, setHireMeModalOpen } = useTheme();
+  const { currentTheme } = useTheme();
   const [roleIndex, setRoleIndex] = useState(0);
 
   const heroRightRef = useRef<HTMLDivElement>(null);
@@ -201,8 +201,6 @@ export const Hero: React.FC = () => {
         >
           {/* location pill */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs font-mono text-slate-300">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <span>{PORTFOLIO_DATA.profile.location}</span>
           </div>
 
@@ -222,9 +220,8 @@ export const Hero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35 }}
-              className="flex items-center gap-2 text-lg sm:text-xl font-mono font-bold text-cyan-400"
+              className="flex items-center gap-2 text-lg sm:text-xl font-mono font-bold text-indigo-400"
             >
-              <Zap className="w-5 h-5 text-amber-400 shrink-0" />
               {ROTATING_ROLES[roleIndex]}
             </motion.div>
           </div>
@@ -234,39 +231,14 @@ export const Hero: React.FC = () => {
             {PORTFOLIO_DATA.profile.tagline}
           </p>
 
-          {/* CTAs + social row grouped together with tighter, independent spacing */}
+          {/* CTAs + social row */}
           <div className="space-y-3">
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4">
-              <motion.button
-                whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-                onClick={() => setHireMeModalOpen(true)}
-                className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold
-                            text-sm text-white bg-gradient-to-r ${currentTheme.gradientClass}
-                            shadow-lg hover:shadow-cyan-500/30 transition-shadow`}
-              >
-                <Briefcase className="w-4 h-4 text-amber-300" />
-                Hire Me (Select Service)
-              </motion.button>
-
-              <motion.a
-                whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-                href="#projects"
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold
-                           text-sm text-slate-200 bg-slate-900 hover:bg-slate-800
-                           border border-slate-800 transition-colors"
-              >
-                Explore Projects
-                <ArrowRight className="w-4 h-4 text-cyan-400" />
-              </motion.a>
-            </div>
-
-            {/* social row with email icon */}
+            {/* email + social row — above */}
             <div className="flex items-center gap-4">
               <a
                 href={`mailto:${PORTFOLIO_DATA.profile.email}`}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80
-                           border border-slate-800 text-xs font-mono text-cyan-400 hover:text-cyan-300"
+                           border border-slate-800 text-xs font-mono text-indigo-400 hover:text-indigo-300"
               >
                 <Mail className="w-3.5 h-3.5" />
                 {PORTFOLIO_DATA.profile.email}
@@ -288,6 +260,32 @@ export const Hero: React.FC = () => {
                   </a>
                 ))}
               </div>
+            </div>
+
+            {/* CTAs — below */}
+            <div className="flex flex-wrap items-center gap-4">
+              <motion.a
+                whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
+                href="/Farhan-Arshad-CV.pdf"
+                download="Farhan-Arshad-CV.pdf"
+                className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold
+                            text-sm text-white bg-gradient-to-r ${currentTheme.gradientClass}
+                            shadow-lg hover:brightness-110 transition-all`}
+              >
+                <Download className="w-4 h-4" />
+                Download CV
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
+                href="#projects"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold
+                           text-sm text-slate-200 bg-slate-900 hover:bg-slate-800
+                           border border-slate-800 transition-colors"
+              >
+                Explore Projects
+                <ArrowRight className="w-4 h-4 text-indigo-400" />
+              </motion.a>
             </div>
           </div>
         </motion.div>
@@ -341,7 +339,6 @@ export const Hero: React.FC = () => {
               transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
               className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-950 border border-slate-700 shadow-lg whitespace-nowrap"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[9px] font-mono text-slate-300">Available for Hire</span>
             </motion.div>
           </motion.div>
