@@ -4,14 +4,14 @@ import { ThemeId, ThemeOption } from '../types';
 export const THEME_OPTIONS: ThemeOption[] = [
   {
     id: 'cyber-neon',
-    name: 'Warm Orange',
-    bgClass: 'bg-[#f7f7f5] text-[#171717]',
-    cardBgClass: 'bg-white border-[#171717]/10 backdrop-blur-xl shadow-sm',
-    accentHex: '#f97316',
-    textAccentClass: 'text-orange-500',
-    borderAccentClass: 'border-orange-500/30',
-    gradientClass: 'from-orange-500 to-orange-600',
-    previewColors: ['#f7f7f5', '#f97316', '#171717'],
+    name: 'Black Cream Lime',
+    bgClass: 'bg-[#0d0d0d] text-[#f5f0e6]',
+    cardBgClass: 'bg-[#161616] border-[#f5f0e6]/[0.07] backdrop-blur-xl',
+    accentHex: '#b7f34a',
+    textAccentClass: 'text-[#b7f34a]',
+    borderAccentClass: 'border-[#b7f34a]/30',
+    gradientClass: 'from-[#b7f34a] to-[#a3e635]',
+    previewColors: ['#0d0d0d', '#b7f34a', '#f5f0e6'],
   },
   {
     id: 'emerald-obsidian',
@@ -101,7 +101,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', themeId);
-    if (themeId === 'cyber-neon' || themeId === 'minimal-light') {
+    if (themeId === 'minimal-light') {
       document.documentElement.classList.remove('dark');
     } else {
       document.documentElement.classList.add('dark');

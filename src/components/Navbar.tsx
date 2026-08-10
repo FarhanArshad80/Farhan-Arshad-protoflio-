@@ -15,7 +15,6 @@ const NAV_LINKS = [
 
 export const Navbar: React.FC = () => {
   const { currentTheme, setHireMeModalOpen } = useTheme();
-
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
@@ -23,20 +22,12 @@ export const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-
-      const sections = NAV_LINKS.map((link) => link.href.substring(1));
+      const sections = NAV_LINKS.map((l) => l.href.substring(1));
       for (const section of [...sections].reverse()) {
         const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 220) {
-            setActiveSection(section);
-            break;
-          }
-        }
+        if (el && el.getBoundingClientRect().top <= 220) { setActiveSection(section); break; }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -45,49 +36,39 @@ export const Navbar: React.FC = () => {
     <header
       id="main-header"
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? 'bg-[#f7f7f5]/95 border-b border-[#171717]/10 py-3 shadow-sm backdrop-blur-2xl'
-          : 'bg-transparent py-5'
+        scrolled ? 'bg-[#0d0d0d]/95 border-b border-[#f5f0e6]/[0.07] py-3 shadow-xl backdrop-blur-2xl' : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
-        {/* Brand & Name */}
         <a href="#" className="flex items-center gap-3 group" id="brand-logo-link">
           <motion.div
-            whileHover={{ scale: 1.08, rotate: 2 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-white font-extrabold text-base shadow-lg shadow-orange-500/25"
+            whileHover={{ scale: 1.08, rotate: 2 }} whileTap={{ scale: 0.95 }}
+            className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#b7f34a] text-[#0d0d0d] font-extrabold text-base shadow-lg shadow-[#b7f34a]/25"
           >
             FA
           </motion.div>
-
           <div className="flex flex-col">
-            <span className="font-extrabold text-base tracking-tight text-[#171717] group-hover:text-orange-500 transition-colors">
+            <span className="font-extrabold text-base tracking-tight text-[#f5f0e6] group-hover:text-[#b7f34a] transition-colors">
               {PORTFOLIO_DATA.profile.name}
             </span>
-            <span className="text-[11px] font-mono text-[#6b7280]">
-              Full Stack Developer
-            </span>
+            <span className="text-[11px] font-mono text-[#8a8680]">Full Stack Developer</span>
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-white/70 p-1.5 rounded-full border border-[#171717]/10 backdrop-blur-md shadow-sm">
+        <nav className="hidden md:flex items-center gap-1 bg-[#161616] p-1.5 rounded-full border border-[#f5f0e6]/[0.07] backdrop-blur-md">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
               <a
-                key={link.href}
-                href={link.href}
-                id={`nav-link-${link.href.substring(1)}`}
+                key={link.href} href={link.href} id={`nav-link-${link.href.substring(1)}`}
                 className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors ${
-                  isActive ? 'text-white' : 'text-[#6b7280] hover:text-[#171717]'
+                  isActive ? 'text-[#0d0d0d]' : 'text-[#8a8680] hover:text-[#f5f0e6]'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeNavTab"
-                    className={`absolute inset-0 rounded-full bg-gradient-to-r ${currentTheme.gradientClass} opacity-95 -z-10 shadow-md`}
+                    className="absolute inset-0 rounded-full bg-[#b7f34a] -z-10 shadow-md shadow-[#b7f34a]/30"
                     transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                   />
                 )}
@@ -97,57 +78,39 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Actions */}
         <div className="flex items-center gap-2">
-          {/* Hire Me Button */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setHireMeModalOpen(true)}
-            id="navbar-hire-me-button"
-            className={`flex items-center gap-2 px-4 py-1.5 text-xs font-bold rounded-xl text-white bg-gradient-to-r ${currentTheme.gradientClass} shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all`}
+            whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+            onClick={() => setHireMeModalOpen(true)} id="navbar-hire-me-button"
+            className="flex items-center gap-2 px-4 py-1.5 text-xs font-bold rounded-xl text-[#0d0d0d] bg-[#b7f34a] shadow-lg shadow-[#b7f34a]/25 hover:brightness-110 transition-all"
           >
             <Briefcase className="w-3.5 h-3.5" />
             <span>Hire Me</span>
           </motion.button>
-
-          {/* Mobile Menu Button */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            id="mobile-menu-toggle"
-            className="md:hidden p-2 rounded-xl bg-white border border-[#171717]/10 text-[#374151]"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)} id="mobile-menu-toggle"
+            className="md:hidden p-2 rounded-xl bg-[#161616] border border-[#f5f0e6]/[0.07] text-[#c8c3b8]"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#f7f7f5]/98 border-b border-[#171717]/10 backdrop-blur-2xl px-4 py-4 space-y-3"
+            initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-[#0d0d0d]/98 border-b border-[#f5f0e6]/[0.07] backdrop-blur-2xl px-4 py-4 space-y-3"
           >
             {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-xl text-base font-medium text-[#374151] hover:bg-[#171717]/5 transition-colors"
-              >
-                {link.label}
-              </a>
+              <a key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-xl text-base font-medium text-[#c8c3b8] hover:bg-[#f5f0e6]/5 transition-colors"
+              >{link.label}</a>
             ))}
-            <div className="pt-3 border-t border-[#171717]/10">
+            <div className="pt-3 border-t border-[#f5f0e6]/[0.07]">
               <button
-                onClick={() => {
-                  setHireMeModalOpen(true);
-                  setMobileMenuOpen(false);
-                }}
-                className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-bold text-white bg-gradient-to-r ${currentTheme.gradientClass} rounded-xl shadow-md`}
+                onClick={() => { setHireMeModalOpen(true); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-bold text-[#0d0d0d] bg-[#b7f34a] rounded-xl shadow-md"
               >
                 <Briefcase className="w-4 h-4" />
                 Hire Me
