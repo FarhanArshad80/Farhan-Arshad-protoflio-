@@ -4,63 +4,17 @@ import { Globe, Smartphone, Brain, Plug, Cloud, Paintbrush } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext';
 
 export const SERVICES_LIST = [
-  'Web Development',
-  'Mobile App Development',
-  'AI Solutions',
-  'API Development',
-  'Cloud Deployment',
-  'UI/UX Design',
+  'Web Development', 'Mobile App Development', 'AI Solutions',
+  'API Development', 'Cloud Deployment', 'UI/UX Design',
 ];
 
 const SERVICES = [
-  {
-    id: 'web-dev',
-    title: 'Web Development',
-    icon: Globe,
-    description:
-      'Full-stack MERN web applications with React frontends, Node.js/NestJS APIs, and MongoDB — built for performance, scalability, and long-term maintenance.',
-    tags: ['React', 'Node.js', 'MongoDB', 'NestJS'],
-  },
-  {
-    id: 'mobile-app',
-    title: 'Mobile App Development',
-    icon: Smartphone,
-    description:
-      'Cross-platform mobile apps using React Native, with smooth UX, API integration, push notifications, and App Store / Play Store deployment.',
-    tags: ['React Native', 'Expo', 'REST APIs'],
-  },
-  {
-    id: 'ai-solutions',
-    title: 'AI Solutions',
-    icon: Brain,
-    description:
-      'AI-powered features and integrations — chatbots, recommendation engines, content generation, and OpenAI / Gemini API embedding in your product.',
-    tags: ['OpenAI', 'Gemini', 'LangChain', 'NLP'],
-  },
-  {
-    id: 'api-dev',
-    title: 'API Development',
-    icon: Plug,
-    description:
-      'Production-ready REST and GraphQL APIs with clean architecture, JWT authentication, Swagger docs, rate limiting, and full test coverage.',
-    tags: ['REST', 'GraphQL', 'Swagger', 'JWT'],
-  },
-  {
-    id: 'cloud-deployment',
-    title: 'Cloud Deployment',
-    icon: Cloud,
-    description:
-      'End-to-end DevOps — Docker containerisation, CI/CD pipelines, Vercel / Render / AWS deployments, environment configuration, and ongoing monitoring.',
-    tags: ['Docker', 'AWS', 'Vercel', 'CI/CD'],
-  },
-  {
-    id: 'ui-ux',
-    title: 'UI/UX Design',
-    icon: Paintbrush,
-    description:
-      'Pixel-perfect, responsive interfaces with Tailwind CSS, Figma-to-code conversions, smooth animations, dark/light modes, and accessibility best practices.',
-    tags: ['Tailwind CSS', 'Figma', 'Framer Motion'],
-  },
+  { id: 'web-dev', title: 'Web Development', icon: Globe, description: 'Full-stack MERN web applications with React frontends, Node.js/NestJS APIs, and MongoDB — built for performance, scalability, and long-term maintenance.', tags: ['React', 'Node.js', 'MongoDB', 'NestJS'] },
+  { id: 'mobile-app', title: 'Mobile App Development', icon: Smartphone, description: 'Cross-platform mobile apps using React Native, with smooth UX, API integration, push notifications, and App Store / Play Store deployment.', tags: ['React Native', 'Expo', 'REST APIs'] },
+  { id: 'ai-solutions', title: 'AI Solutions', icon: Brain, description: 'AI-powered features and integrations — chatbots, recommendation engines, content generation, and OpenAI / Gemini API embedding in your product.', tags: ['OpenAI', 'Gemini', 'LangChain', 'NLP'] },
+  { id: 'api-dev', title: 'API Development', icon: Plug, description: 'Production-ready REST and GraphQL APIs with clean architecture, JWT authentication, Swagger docs, rate limiting, and full test coverage.', tags: ['REST', 'GraphQL', 'Swagger', 'JWT'] },
+  { id: 'cloud-deployment', title: 'Cloud Deployment', icon: Cloud, description: 'End-to-end DevOps — Docker containerisation, CI/CD pipelines, Vercel / Render / AWS deployments, environment configuration, and ongoing monitoring.', tags: ['Docker', 'AWS', 'Vercel', 'CI/CD'] },
+  { id: 'ui-ux', title: 'UI/UX Design', icon: Paintbrush, description: 'Pixel-perfect, responsive interfaces with Tailwind CSS, Figma-to-code conversions, smooth animations, dark/light modes, and accessibility best practices.', tags: ['Tailwind CSS', 'Figma', 'Framer Motion'] },
 ];
 
 export const ServicesSection: React.FC = () => {
@@ -69,69 +23,38 @@ export const ServicesSection: React.FC = () => {
   return (
     <section id="services" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="flex items-center justify-center gap-3">
-            <div className="h-px w-8 bg-[#171717]/15" />
-            <span className="text-xs font-mono text-[#9ca3af] tracking-widest uppercase">What I Offer</span>
-            <div className="h-px w-8 bg-[#171717]/15" />
+            <div className="h-px w-8 bg-[#f5f0e6]/15" />
+            <span className="text-xs font-mono text-[#5a5650] tracking-widest uppercase">What I Offer</span>
+            <div className="h-px w-8 bg-[#f5f0e6]/15" />
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#171717]">
-            Services &{' '}
-            <span
-              className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}
-            >
-              Expertise
-            </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#f5f0e6]">
+            Services & <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>Expertise</span>
           </h2>
-          <p className="text-[#6b7280] text-base sm:text-lg">
-            End-to-end software solutions tailored to your business — from ideation and design to
-            deployment and ongoing maintenance.
-          </p>
+          <p className="text-[#8a8680] text-base sm:text-lg">End-to-end software solutions tailored to your business — from ideation and design to deployment and ongoing maintenance.</p>
         </div>
 
-        {/* 3-column grid (2 on tablet, 1 on mobile) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, index) => {
             const Icon = service.icon;
             return (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }}
-                whileHover={{ y: -5 }}
-                className="group relative flex flex-col p-6 rounded-3xl bg-white border border-[#171717]/10 shadow-sm hover:border-orange-500/30 hover:shadow-md transition-all duration-300"
+              <motion.div key={service.id} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }} whileHover={{ y: -5 }}
+                className="group relative flex flex-col p-6 rounded-3xl bg-[#161616] border border-[#f5f0e6]/[0.07] hover:border-[#b7f34a]/30 transition-all duration-300 shadow-lg hover:shadow-[#b7f34a]/10"
               >
-                {/* Icon badge */}
-                <div
-                  className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${currentTheme.gradientClass} flex items-center justify-center mb-5 shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <Icon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-2xl bg-[#b7f34a] flex items-center justify-center mb-5 shadow-lg shadow-[#b7f34a]/20 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-6 h-6 text-[#0d0d0d]" />
                 </div>
-
-                <h3 className="text-lg font-bold text-[#171717] mb-2">{service.title}</h3>
-                <p className="text-sm text-[#6b7280] leading-relaxed flex-1">
-                  {service.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-[#171717]/10">
+                <h3 className="text-lg font-bold text-[#f5f0e6] mb-2">{service.title}</h3>
+                <p className="text-sm text-[#8a8680] leading-relaxed flex-1">{service.description}</p>
+                <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-[#f5f0e6]/[0.07]">
                   {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-0.5 rounded-md bg-[#f7f7f5] border border-[#171717]/10 text-[10px] font-mono text-[#6b7280]"
-                    >
-                      {tag}
-                    </span>
+                    <span key={tag} className="px-2.5 py-0.5 rounded-md bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[10px] font-mono text-[#8a8680]">{tag}</span>
                   ))}
                 </div>
-
-                {/* Select CTA */}
-                <button
-                  onClick={() => setHireMeModalOpen(true, service.title)}
-                  className={`mt-4 w-full py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${currentTheme.gradientClass} opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md`}
+                <button onClick={() => setHireMeModalOpen(true, service.title)}
+                  className="mt-4 w-full py-2.5 rounded-xl text-xs font-bold text-[#0d0d0d] bg-[#b7f34a] opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md"
                 >
                   Select This Service →
                 </button>
