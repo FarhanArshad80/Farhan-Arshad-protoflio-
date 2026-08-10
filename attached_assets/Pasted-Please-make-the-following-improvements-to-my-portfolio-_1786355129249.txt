@@ -1,0 +1,47 @@
+Please make the following improvements to my portfolio website:
+
+1. **Update the Theme**
+
+   * Change the overall theme to a modern **black-and-white design** with one attractive accent color of your choice.
+   * Keep the color palette professional, premium, clean, and natural-looking—not like an AI-generated template.
+   * Ensure good contrast, readability, and consistency across all sections.
+
+2. **Fix the PDF Download**
+
+   * The **Download PDF** button currently works, but the downloaded PDF file cannot be opened.
+   * Fix the PDF generation/download functionality so the downloaded file is a valid, properly formatted, and openable PDF.
+
+3. **Minimize Form Placeholder Text**
+
+   * Reduce the amount of text inside all form placeholders.
+   * Keep placeholders short, simple, and clean.
+   * Example: use **“Your name”** instead of long explanatory placeholder text.
+
+4. **Add Smooth Animations**
+
+   * Add modern, smooth, and subtle animations throughout the portfolio.
+   * Use animations for section entrances, buttons, cards, text, and other important UI elements.
+   * Keep animations professional and fast enough that they do not make the website feel slow or distracting.
+
+5. **Add a Loading Screen**
+
+   * When the website is initially loaded or refreshed, show a professional loading screen.
+   * Display my profile picture during the loading animation.
+   * Use a smooth animation around or with my picture.
+   * Once the loading animation is complete, smoothly transition into the main portfolio.
+   * The loading screen should feel premium and match the new black-and-white theme and accent color.
+
+6. **Add a Custom Cursor Animation**
+
+   * Add a modern custom cursor animation that matches the overall portfolio theme.
+   * Make the cursor interactive and responsive when hovering over buttons, links, cards, images, and other clickable elements.
+   * Keep it elegant and minimal rather than overly flashy.
+   * Ensure it works smoothly on desktop and does not negatively affect usability.
+
+**Important:**
+
+* Do not change the existing content, information, projects, or personal details unless necessary.
+* Keep the existing functionality working.
+* Make the entire website responsive on desktop, tablet, and mobile.
+* Maintain a professional developer/portfolio appearance with a premium, human-designed feel.
+* Make sure all animations are smooth and optimized for performance.

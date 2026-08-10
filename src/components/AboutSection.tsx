@@ -34,10 +34,10 @@ export const AboutSection: React.FC = () => {
             transition={{ duration: 0.7 }}
             className="lg:col-span-5"
           >
-            <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-2xl shadow-2xl space-y-6 overflow-hidden group hover:border-cyan-500/50 transition-all">
+            <div className="relative p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-2xl shadow-2xl space-y-6 overflow-hidden group hover:border-violet-500/40 transition-all">
               {/* Profile Badge */}
               <div className="flex items-center gap-4">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${currentTheme.gradientClass} text-white font-extrabold text-2xl flex items-center justify-center shadow-xl shadow-cyan-500/20`}>
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${currentTheme.gradientClass} text-white font-extrabold text-2xl flex items-center justify-center shadow-xl shadow-violet-500/20`}>
                   FA
                 </div>
                 <div>
@@ -49,7 +49,7 @@ export const AboutSection: React.FC = () => {
               {/* Direct Details Box */}
               <div className="space-y-3 pt-4 border-t border-slate-800/80 font-mono text-xs">
                 <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-300">
-                  <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <Mail className="w-4 h-4 text-violet-400 shrink-0" />
                   <a href={`mailto:${PORTFOLIO_DATA.profile.email}`} className="truncate hover:text-cyan-300">
                     {PORTFOLIO_DATA.profile.email}
                   </a>

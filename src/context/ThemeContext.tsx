@@ -4,14 +4,14 @@ import { ThemeId, ThemeOption } from '../types';
 export const THEME_OPTIONS: ThemeOption[] = [
   {
     id: 'cyber-neon',
-    name: 'Professional Dark Navy',
-    bgClass: 'bg-[#0F1117] text-slate-100',
-    cardBgClass: 'bg-slate-900/60 border-slate-800/80 backdrop-blur-xl',
-    accentHex: '#6366F1',
-    textAccentClass: 'text-indigo-400',
-    borderAccentClass: 'border-indigo-500/40',
-    gradientClass: 'from-indigo-600 via-blue-600 to-indigo-800',
-    previewColors: ['#0F1117', '#6366F1', '#3B82F6'],
+    name: 'Midnight Violet',
+    bgClass: 'bg-[#080808] text-slate-100',
+    cardBgClass: 'bg-[#111111]/90 border-white/[0.06] backdrop-blur-xl',
+    accentHex: '#7C3AED',
+    textAccentClass: 'text-violet-400',
+    borderAccentClass: 'border-violet-500/40',
+    gradientClass: 'from-violet-600 via-purple-600 to-violet-800',
+    previewColors: ['#080808', '#7C3AED', '#A78BFA'],
   },
   {
     id: 'emerald-obsidian',

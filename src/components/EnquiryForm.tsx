@@ -101,7 +101,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500 font-mono";
+    "w-full px-4 py-3 rounded-xl bg-[#0d0d0d] border border-white/[0.07] text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500 font-mono";
   const labelClass = "text-xs font-mono text-slate-400";
 
   if (submitted) {
@@ -171,7 +171,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Alex Morgan"
+              placeholder="Your name"
               className={inputClass}
             />
           </div>
@@ -182,7 +182,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="e.g. client@company.com"
+              placeholder="your@email.com"
               className={inputClass}
             />
           </div>
@@ -194,7 +194,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
             type="text"
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
-            placeholder="e.g. +1 234 567 890"
+            placeholder="+1 234 567 890"
             className={inputClass}
           />
         </div>
@@ -206,7 +206,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
             rows={compact ? 3 : 4}
             value={projectDesc}
             onChange={(e) => setProjectDesc(e.target.value)}
-            placeholder="Describe your project, features you need, target audience, and any technical requirements..."
+            placeholder="Describe your project..."
             className={`${inputClass} resize-none`}
           />
         </div>
@@ -231,7 +231,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
               type="text"
               value={timeline}
               onChange={(e) => setTimeline(e.target.value)}
-              placeholder="e.g. 2 weeks, 1 month, ASAP"
+              placeholder="e.g. 2 weeks, 1 month"
               className={inputClass}
             />
           </div>
@@ -240,7 +240,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-4 rounded-xl text-white font-bold text-sm bg-gradient-to-r ${currentTheme.gradientClass} shadow-lg shadow-cyan-500/20 hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-50`}
+          className={`w-full py-4 rounded-xl text-white font-bold text-sm bg-gradient-to-r ${currentTheme.gradientClass} shadow-lg shadow-violet-500/20 hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-50`}
         >
           {loading ? (
             <span className="flex items-center gap-2 font-mono text-xs">
@@ -263,7 +263,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
         <p className="text-center text-[11px] font-mono text-slate-500">
           Enquiry will be delivered to{" "}
-          <span className="text-cyan-500">{PORTFOLIO_DATA.profile.email}</span>
+          <span className="text-violet-400">{PORTFOLIO_DATA.profile.email}</span>
         </p>
       </form>
     </div>
