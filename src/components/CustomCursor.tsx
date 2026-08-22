@@ -49,10 +49,10 @@ export const CustomCursor: React.FC = () => {
   return (
     <>
       <div ref={dotRef} className="fixed top-0 left-0 pointer-events-none z-[99999] rounded-full"
-        style={{ width: isHovering ? 10 : 6, height: isHovering ? 10 : 6, backgroundColor: '#40916C', opacity: visible ? 1 : 0, transition: 'width 0.18s ease, height 0.18s ease, opacity 0.2s ease', willChange: 'transform' }}
+        style={{ width: isHovering ? 10 : 6, height: isHovering ? 10 : 6, backgroundColor: '#2563EB', opacity: visible ? 1 : 0, transition: 'width 0.18s ease, height 0.18s ease, opacity 0.2s ease', willChange: 'transform' }}
       />
       <div ref={ringRef} className="fixed top-0 left-0 pointer-events-none z-[99998] rounded-full"
-        style={{ width: isHovering ? 44 : 32, height: isHovering ? 44 : 32, border: `1.5px solid ${isHovering ? 'rgba(46,125,50,0.85)' : 'rgba(64,145,108,0.45)'}`, backgroundColor: isHovering ? 'rgba(64,145,108,0.07)' : 'transparent', opacity: visible ? 1 : 0, transition: 'width 0.22s ease, height 0.22s ease, border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease', willChange: 'transform' }}
+        style={{ width: isHovering ? 44 : 32, height: isHovering ? 44 : 32, border: `1.5px solid ${isHovering ? 'rgba(29,78,216,0.85)' : 'rgba(37,99,235,0.45)'}`, backgroundColor: isHovering ? 'rgba(37,99,235,0.07)' : 'transparent', opacity: visible ? 1 : 0, transition: 'width 0.22s ease, height 0.22s ease, border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease', willChange: 'transform' }}
       />
     </>
   );

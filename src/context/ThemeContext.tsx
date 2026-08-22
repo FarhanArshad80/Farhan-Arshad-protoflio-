@@ -4,14 +4,14 @@ import { ThemeId, ThemeOption } from '../types';
 export const THEME_OPTIONS: ThemeOption[] = [
   {
     id: 'cyber-neon',
-    name: 'Garden Green',
-    bgClass: 'bg-[#F7FAF7] text-[#0F172A]',
-    cardBgClass: 'bg-white border-[#E2E8E2] backdrop-blur-xl shadow-sm',
-    accentHex: '#40916C',
-    textAccentClass: 'text-[#2E7D32]',
-    borderAccentClass: 'border-[#40916C]/30',
-    gradientClass: 'from-[#2E7D32] to-[#40916C]',
-    previewColors: ['#F7FAF7', '#2E7D32', '#40916C'],
+    name: 'Clean Blue',
+    bgClass: 'bg-[#F8FAFC] text-[#0F172A]',
+    cardBgClass: 'bg-white border-[#E2E8F0] backdrop-blur-xl shadow-sm',
+    accentHex: '#2563EB',
+    textAccentClass: 'text-[#2563EB]',
+    borderAccentClass: 'border-[#2563EB]/30',
+    gradientClass: 'from-[#2563EB] to-[#3B82F6]',
+    previewColors: ['#F8FAFC', '#2563EB', '#0F172A'],
   },
   {
     id: 'emerald-obsidian',

@@ -27,14 +27,14 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#F7FAF7] select-none"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#F8FAFC] select-none"
     >
       <div className="relative mb-8" style={{ width: 152, height: 152 }}>
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 2.6, repeat: Infinity, ease: 'linear' }}
           className="absolute inset-0 rounded-full"
-          style={{ background: 'conic-gradient(from 0deg, #2E7D32 0%, #40916C 45%, transparent 55%, transparent 100%)' }}
+          style={{ background: 'conic-gradient(from 0deg, #2563EB 0%, #3B82F6 45%, transparent 55%, transparent 100%)' }}
         />
         <div
           className="absolute inset-0 rounded-full"
@@ -44,7 +44,7 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
           initial={{ scale: 0.75, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.55, ease: 'easeOut' }}
-          className="absolute inset-[5px] rounded-full overflow-hidden border border-[#0F172A]/10 shadow-2xl shadow-[#40916C]/20"
+          className="absolute inset-[5px] rounded-full overflow-hidden border border-[#0F172A]/10 shadow-2xl shadow-[#2563EB]/20"
         >
           <img src={profileImage} alt="Farhan Arshad" className="w-full h-full object-cover object-top" />
         </motion.div>
@@ -63,7 +63,7 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, delay: 0.45 }}
-        className="text-[11px] font-mono text-[#2E7D32] tracking-[0.22em] uppercase mb-10"
+        className="text-[11px] font-mono text-[#2563EB] tracking-[0.22em] uppercase mb-10"
       >
         Full Stack Developer
       </motion.p>
@@ -77,7 +77,7 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         <div
           ref={barRef}
           className="absolute inset-y-0 left-0 rounded-full"
-          style={{ width: '0%', background: 'linear-gradient(90deg, #2E7D32, #40916C)' }}
+          style={{ width: '0%', background: 'linear-gradient(90deg, #2563EB, #3B82F6)' }}
         />
       </motion.div>
     </motion.div>
