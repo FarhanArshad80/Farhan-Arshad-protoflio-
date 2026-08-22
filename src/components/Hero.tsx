@@ -30,14 +30,14 @@ function useCountUp(end: number, duration = 1.2, startDelay = 0) {
   return { ref, val };
 }
 
-const SNK_W = 64, SNK_H = 300, CARD_W = 112, GAP = 10;
+const SNK_W = 64, SNK_H = 340, CARD_W = 112, GAP = 10;
 const SNAKE_NODES = [
-  { x: 50, y: 36, side: 'right' }, { x: 14, y: 112, side: 'left' },
-  { x: 50, y: 190, side: 'right' }, { x: 14, y: 266, side: 'left' },
+  { x: 50, y: 38, side: 'right' }, { x: 14, y: 132, side: 'left' },
+  { x: 50, y: 226, side: 'right' }, { x: 14, y: 320, side: 'left' },
 ];
 const SNAKE_PATH =
-  `M ${SNAKE_NODES[0].x} ${SNAKE_NODES[0].y} C 62 62, 62 82, ${SNAKE_NODES[1].x} ${SNAKE_NODES[1].y} ` +
-  `C 0 138, 28 156, ${SNAKE_NODES[2].x} ${SNAKE_NODES[2].y} C 66 216, 20 238, ${SNAKE_NODES[3].x} ${SNAKE_NODES[3].y}`;
+  `M ${SNAKE_NODES[0].x} ${SNAKE_NODES[0].y} C 64 70, 62 96, ${SNAKE_NODES[1].x} ${SNAKE_NODES[1].y} ` +
+  `C 0 164, 28 190, ${SNAKE_NODES[2].x} ${SNAKE_NODES[2].y} C 66 258, 20 286, ${SNAKE_NODES[3].x} ${SNAKE_NODES[3].y}`;
 
 const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => (
   <div className="relative select-none flex-shrink-0" style={{ width: SNK_W, height: SNK_H, overflow: 'visible' }}>
@@ -49,10 +49,19 @@ const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => (
           <stop offset="100%" stopColor={accentHex} />
         </linearGradient>
       </defs>
-      <motion.path d={SNAKE_PATH} stroke="url(#snkG)" strokeWidth="1.5" strokeLinecap="round" fill="none"
-        initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.8, delay: 0.4, ease: 'easeInOut' }} />
+      <motion.path d={SNAKE_PATH} stroke="url(#snkG)" strokeWidth="2.2" strokeLinecap="round" fill="none"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: [0.7, 1, 0.7] }}
+        transition={{
+          pathLength: { duration: 1.8, delay: 0.4, ease: 'easeInOut' },
+          opacity: { duration: 2.8, delay: 2.2, repeat: Infinity, ease: 'easeInOut' },
+        }}
+      />
+      <circle r="2.5" fill={accentHex} opacity="0.9">
+        <animateMotion dur="3.2s" begin="2.2s" repeatCount="indefinite" path={SNAKE_PATH} />
+      </circle>
       {SNAKE_NODES.map((n, i) => (
-        <motion.circle key={i} cx={n.x} cy={n.y} r="3.25" fill={accentHex} stroke="#FFFFFF" strokeWidth="1"
+        <motion.circle key={i} cx={n.x} cy={n.y} r="3.5" fill={accentHex} stroke="#FFFFFF" strokeWidth="1"
           initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.3, delay: 0.7 + i * 0.2 }} />
       ))}
     </svg>
@@ -63,7 +72,7 @@ const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => (
       const isRight = n.side === 'right';
       const cardLeft = isRight ? n.x + GAP : n.x - GAP - CARD_W;
       return (
-        <motion.div key={i} className="hero-stat-card absolute flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#161616] border border-[#f5f0e6]/[0.08]"
+        <motion.div key={i} className="hero-stat-card absolute flex min-h-[54px] items-center gap-1.5 px-2.5 py-2 rounded-xl bg-[#161616] border border-[#f5f0e6]/[0.08]"
           style={{ top: n.y, left: cardLeft, transform: 'translateY(-50%)', minWidth: CARD_W }}
           initial={{ opacity: 0, x: isRight ? 16 : -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45, delay: 1.0 + i * 0.18, ease: 'easeOut' }}
         >
