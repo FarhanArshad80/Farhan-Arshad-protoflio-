@@ -75,9 +75,6 @@ const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => {
           animate={{ pathLength: 1, opacity: 1 }}
           transition={{ pathLength: { duration: 1.8, delay: 0.4, ease: 'easeInOut' }, opacity: { duration: 0.3, delay: 0.4 } }}
         />
-        <circle r="2.5" fill={accentHex} opacity="0.95">
-          <animateMotion dur="3.2s" begin="0.25s" repeatCount="1" path={SNAKE_PATH} />
-        </circle>
         {SNAKE_NODES.map((n, i) => (
           <motion.circle key={i} cx={n.x} cy={n.y} r="3.5" fill={accentHex} stroke="#FFFFFF" strokeWidth="1"
             initial={{ scale: 0, opacity: 0 }}
