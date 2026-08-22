@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
-import { CanvasBackground } from './components/CanvasBackground';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutSection } from './components/AboutSection';
@@ -32,9 +31,6 @@ function MainAppContent() {
       </AnimatePresence>
 
       <div className={`portfolio-shell min-h-screen relative font-sans transition-colors duration-500 ${currentTheme.bgClass}`}>
-        {/* Dynamic particle background */}
-        <CanvasBackground />
-
         {/* Main navigation header */}
         <Navbar />
 

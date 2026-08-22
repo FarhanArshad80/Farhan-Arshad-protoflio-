@@ -167,11 +167,11 @@ html[data-theme='cyber-neon'] [class*="border-emerald-"] {
   border-color: #2563EB !important;
 }
 
-html[data-theme='cyber-neon'] [class*="shadow-[#b7f34a]"],
-html[data-theme='cyber-neon'] [class*="shadow-orange-"],
-html[data-theme='cyber-neon'] [class*="shadow-cyan-"],
-html[data-theme='cyber-neon'] [class*="shadow-violet-"] {
-  --tw-shadow-color: rgb(37 99 235 / 0.2) !important;
+/* Keep the light theme flat: no colored or oversized shadows around cards and controls. */
+html[data-theme='cyber-neon'] [class*="shadow-"] {
+  box-shadow: none !important;
+  --tw-shadow: 0 0 transparent !important;
+  --tw-shadow-colored: 0 0 transparent !important;
 }
 
 html[data-theme='cyber-neon'] [class*="hover:bg-[#b7f34a]"]:hover,

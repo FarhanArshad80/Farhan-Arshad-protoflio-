@@ -48,15 +48,11 @@ const SnakePanel: React.FC<{ gradientClass: string }> = ({ gradientClass }) => (
           <stop offset="50%" stopColor="#d4f97d" />
           <stop offset="100%" stopColor="#a3e635" />
         </linearGradient>
-        <filter id="snkGlow" x="-60%" y="-60%" width="220%" height="220%">
-          <feGaussianBlur stdDeviation="2.5" result="b" />
-          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
       </defs>
-      <motion.path d={SNAKE_PATH} stroke="url(#snkG)" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 8" fill="none" filter="url(#snkGlow)"
+      <motion.path d={SNAKE_PATH} stroke="url(#snkG)" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 8" fill="none"
         initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.8, delay: 0.4, ease: 'easeInOut' }} />
       {SNAKE_NODES.map((n, i) => (
-        <motion.circle key={i} cx={n.x} cy={n.y} r="5" fill="#0d0d0d" stroke="url(#snkG)" strokeWidth="2.5" filter="url(#snkGlow)"
+        <motion.circle key={i} cx={n.x} cy={n.y} r="5" fill="#0d0d0d" stroke="url(#snkG)" strokeWidth="2.5"
           initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.3, delay: 0.7 + i * 0.2 }} />
       ))}
     </svg>
@@ -101,8 +97,6 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="hero" className="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#b7f34a]/8 rounded-full blur-[120px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="lg:col-span-6 space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161616] border border-[#f5f0e6]/[0.07] text-xs font-mono text-[#8a8680]">
@@ -177,17 +171,12 @@ export const Hero: React.FC = () => {
           className="lg:col-span-3 flex items-center justify-center"
         >
           <motion.div initial={{ opacity: 0, scale: 0.88 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.35, ease: 'easeOut' }} className="relative flex-shrink-0">
-            <motion.div
-              className="absolute -inset-1 rounded-[1.6rem] bg-[#b7f34a] blur-md opacity-30"
-              animate={{ opacity: [0.2, 0.45, 0.2] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <div className="relative w-44 h-60 sm:w-52 sm:h-72 rounded-[1.5rem] overflow-hidden border border-[#f5f0e6]/10 shadow-2xl bg-[#161616]">
+            <div className="relative w-44 h-60 sm:w-52 sm:h-72 rounded-[1.5rem] overflow-hidden border border-[#f5f0e6]/10 bg-[#161616]">
               <img src={profileImage} alt={PORTFOLIO_DATA.profile.name} className="w-full h-full object-cover object-top" />
             </div>
             <motion.div
               animate={{ y: [0, -4, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#161616] border border-[#f5f0e6]/10 shadow-lg whitespace-nowrap"
+              className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#161616] border border-[#f5f0e6]/10 whitespace-nowrap"
             >
               <span className="text-[9px] font-mono text-[#8a8680]">Available for Hire</span>
             </motion.div>
