@@ -74,6 +74,10 @@ html[data-theme='minimal-light'] .bg-grid-pattern {
 .glass-card { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
 .glass-card:hover { transform: translateY(-4px); }
 
+.hero-stat-card {
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
 /* Clean Blue theme overrides for legacy utility classes */
 html[data-theme='cyber-neon'] body {
   background: #F8FAFC;

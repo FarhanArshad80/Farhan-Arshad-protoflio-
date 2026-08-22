@@ -12,10 +12,10 @@ const ROTATING_ROLES = [
 ];
 
 const STATS = [
-  { icon: Calendar, end: 3, suffix: ' Yrs', label: 'Experience' },
-  { icon: FolderGit2, end: 30, suffix: '+', label: 'Projects' },
-  { icon: ThumbsUp, end: 100, suffix: '%', label: 'Satisfaction' },
-  { icon: Users, end: 24, suffix: 'k+', label: 'Network' },
+  { icon: Calendar, end: 3, suffix: '+', label: 'Years', detail: 'Experience' },
+  { icon: FolderGit2, end: 30, suffix: '+', label: 'Projects', detail: 'Completed' },
+  { icon: ThumbsUp, end: 100, suffix: '%', label: 'Client', detail: 'Satisfaction' },
+  { icon: Users, end: 24, suffix: 'K+', label: 'Professional', detail: 'Network' },
 ];
 
 function useCountUp(end: number, duration = 1.2, startDelay = 0) {
@@ -30,14 +30,14 @@ function useCountUp(end: number, duration = 1.2, startDelay = 0) {
   return { ref, val };
 }
 
-const SNK_W = 60, SNK_H = 320, CARD_W = 118, GAP = 10;
+const SNK_W = 64, SNK_H = 300, CARD_W = 112, GAP = 10;
 const SNAKE_NODES = [
-  { x: 48, y: 40, side: 'right' }, { x: 12, y: 120, side: 'left' },
-  { x: 48, y: 200, side: 'right' }, { x: 12, y: 280, side: 'left' },
+  { x: 50, y: 36, side: 'right' }, { x: 14, y: 112, side: 'left' },
+  { x: 50, y: 190, side: 'right' }, { x: 14, y: 266, side: 'left' },
 ];
 const SNAKE_PATH =
-  `M ${SNAKE_NODES[0].x} ${SNAKE_NODES[0].y} C 48 70, 12 90, ${SNAKE_NODES[1].x} ${SNAKE_NODES[1].y} ` +
-  `C 12 150, 48 170, ${SNAKE_NODES[2].x} ${SNAKE_NODES[2].y} C 48 230, 12 250, ${SNAKE_NODES[3].x} ${SNAKE_NODES[3].y}`;
+  `M ${SNAKE_NODES[0].x} ${SNAKE_NODES[0].y} C 62 62, 62 82, ${SNAKE_NODES[1].x} ${SNAKE_NODES[1].y} ` +
+  `C 0 138, 28 156, ${SNAKE_NODES[2].x} ${SNAKE_NODES[2].y} C 66 216, 20 238, ${SNAKE_NODES[3].x} ${SNAKE_NODES[3].y}`;
 
 const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => (
   <div className="relative select-none flex-shrink-0" style={{ width: SNK_W, height: SNK_H, overflow: 'visible' }}>
@@ -49,10 +49,10 @@ const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => (
           <stop offset="100%" stopColor={accentHex} />
         </linearGradient>
       </defs>
-      <motion.path d={SNAKE_PATH} stroke="url(#snkG)" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 8" fill="none"
+      <motion.path d={SNAKE_PATH} stroke="url(#snkG)" strokeWidth="1.5" strokeLinecap="round" fill="none"
         initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.8, delay: 0.4, ease: 'easeInOut' }} />
       {SNAKE_NODES.map((n, i) => (
-        <motion.circle key={i} cx={n.x} cy={n.y} r="5" fill="#0d0d0d" stroke="url(#snkG)" strokeWidth="2.5"
+        <motion.circle key={i} cx={n.x} cy={n.y} r="3.25" fill={accentHex} stroke="#FFFFFF" strokeWidth="1"
           initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.3, delay: 0.7 + i * 0.2 }} />
       ))}
     </svg>
@@ -63,18 +63,19 @@ const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => (
       const isRight = n.side === 'right';
       const cardLeft = isRight ? n.x + GAP : n.x - GAP - CARD_W;
       return (
-        <motion.div key={i} className="absolute flex items-center gap-2 px-3 py-2 rounded-xl bg-[#161616] border border-[#f5f0e6]/[0.08] shadow-lg"
+        <motion.div key={i} className="hero-stat-card absolute flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#161616] border border-[#f5f0e6]/[0.08]"
           style={{ top: n.y, left: cardLeft, transform: 'translateY(-50%)', minWidth: CARD_W }}
           initial={{ opacity: 0, x: isRight ? 16 : -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45, delay: 1.0 + i * 0.18, ease: 'easeOut' }}
         >
-          <span className={`flex items-center justify-center w-8 h-8 rounded-lg bg-[#b7f34a] shrink-0`}>
+            <span className={`flex items-center justify-center w-7 h-7 rounded-lg bg-[#b7f34a] shrink-0`}>
             <Icon className="w-3.5 h-3.5 text-[#0d0d0d]" />
           </span>
           <div className="leading-none">
-            <p className="text-sm font-black font-mono text-[#b7f34a]">
+            <p className="text-[11px] font-black font-mono text-[#b7f34a]">
               <span ref={ref}>{val}</span>{stat.suffix}
             </p>
-            <p className="text-[9px] text-[#8a8680] font-medium mt-0.5 whitespace-nowrap">{stat.label}</p>
+            <p className="text-[8px] text-[#8a8680] font-medium mt-0.5 leading-tight whitespace-nowrap">{stat.label}</p>
+            <p className="text-[8px] text-[#8a8680] font-medium leading-tight whitespace-nowrap">{stat.detail}</p>
           </div>
         </motion.div>
       );
