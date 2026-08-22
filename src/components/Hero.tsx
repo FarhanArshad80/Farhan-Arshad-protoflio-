@@ -39,58 +39,81 @@ const SNAKE_PATH =
   `M ${SNAKE_NODES[0].x} ${SNAKE_NODES[0].y} C 64 70, 62 96, ${SNAKE_NODES[1].x} ${SNAKE_NODES[1].y} ` +
   `C 0 164, 28 190, ${SNAKE_NODES[2].x} ${SNAKE_NODES[2].y} C 66 258, 20 286, ${SNAKE_NODES[3].x} ${SNAKE_NODES[3].y}`;
 
-const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => (
-  <div className="relative select-none flex-shrink-0" style={{ width: SNK_W, height: SNK_H, overflow: 'visible' }}>
-    <svg viewBox={`0 0 ${SNK_W} ${SNK_H}`} width={SNK_W} height={SNK_H} className="absolute inset-0 pointer-events-none" style={{ overflow: 'visible' }}>
-      <defs>
-        <linearGradient id="snkG" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={accentHex} />
-          <stop offset="50%" stopColor={accentHex} />
-          <stop offset="100%" stopColor={accentHex} />
-        </linearGradient>
-      </defs>
-      <motion.path d={SNAKE_PATH} stroke="url(#snkG)" strokeWidth="2.2" strokeLinecap="round" fill="none"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: [0.7, 1, 0.7] }}
-        transition={{
-          pathLength: { duration: 1.8, delay: 0.4, ease: 'easeInOut' },
-          opacity: { duration: 2.8, delay: 2.2, repeat: Infinity, ease: 'easeInOut' },
-        }}
-      />
-      <circle r="2.5" fill={accentHex} opacity="0.9">
-        <animateMotion dur="3.2s" begin="2.2s" repeatCount="indefinite" path={SNAKE_PATH} />
-      </circle>
-      {SNAKE_NODES.map((n, i) => (
-        <motion.circle key={i} cx={n.x} cy={n.y} r="3.5" fill={accentHex} stroke="#FFFFFF" strokeWidth="1"
-          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.3, delay: 0.7 + i * 0.2 }} />
-      ))}
-    </svg>
-    {STATS.map((stat, i) => {
-      const n = SNAKE_NODES[i];
-      const Icon = stat.icon;
-      const { ref, val } = useCountUp(stat.end, 1.1, 0.7 + i * 0.2);
-      const isRight = n.side === 'right';
-      const cardLeft = isRight ? n.x + GAP : n.x - GAP - CARD_W;
-      return (
-        <motion.div key={i} className="hero-stat-card absolute flex min-h-[54px] items-center gap-1.5 px-2.5 py-2 rounded-xl bg-[#161616] border border-[#f5f0e6]/[0.08]"
-          style={{ top: n.y, left: cardLeft, transform: 'translateY(-50%)', minWidth: CARD_W }}
-          initial={{ opacity: 0, x: isRight ? 16 : -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45, delay: 1.0 + i * 0.18, ease: 'easeOut' }}
-        >
+const NODE_GLOW_TIMES = [250, 1100, 2150, 3150];
+
+const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => {
+  const [activeNode, setActiveNode] = useState(-1);
+
+  useEffect(() => {
+    const timers: number[] = [];
+    NODE_GLOW_TIMES.forEach((delay, index) => {
+      timers.push(window.setTimeout(() => setActiveNode(index), delay));
+      timers.push(window.setTimeout(() => setActiveNode(-1), delay + 500));
+    });
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
+  }, []);
+
+  return (
+    <div className="relative select-none flex-shrink-0" style={{ width: SNK_W, height: SNK_H, overflow: 'visible' }}>
+      <svg viewBox={`0 0 ${SNK_W} ${SNK_H}`} width={SNK_W} height={SNK_H} className="absolute inset-0 pointer-events-none" style={{ overflow: 'visible' }}>
+        <defs>
+          <linearGradient id="snkG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={accentHex} />
+            <stop offset="50%" stopColor={accentHex} />
+            <stop offset="100%" stopColor={accentHex} />
+          </linearGradient>
+          <filter id="snkNodeGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <motion.path d={SNAKE_PATH} stroke="url(#snkG)" strokeWidth="2.2" strokeLinecap="round" fill="none"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ pathLength: { duration: 1.8, delay: 0.4, ease: 'easeInOut' }, opacity: { duration: 0.3, delay: 0.4 } }}
+        />
+        <circle r="2.5" fill={accentHex} opacity="0.95">
+          <animateMotion dur="3.2s" begin="0.25s" repeatCount="1" path={SNAKE_PATH} />
+        </circle>
+        {SNAKE_NODES.map((n, i) => (
+          <motion.circle key={i} cx={n.x} cy={n.y} r="3.5" fill={accentHex} stroke="#FFFFFF" strokeWidth="1"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: activeNode === i ? [1, 1.7, 1] : 1, opacity: 1 }}
+            transition={{ scale: { duration: 0.5, ease: 'easeOut' }, opacity: { duration: 0.3, delay: 0.7 + i * 0.2 } }}
+            filter={activeNode === i ? 'url(#snkNodeGlow)' : undefined}
+          />
+        ))}
+      </svg>
+      {STATS.map((stat, i) => {
+        const n = SNAKE_NODES[i];
+        const Icon = stat.icon;
+        const { ref, val } = useCountUp(stat.end, 1.1, 0.7 + i * 0.2);
+        const isRight = n.side === 'right';
+        const cardLeft = isRight ? n.x + GAP : n.x - GAP - CARD_W;
+        return (
+          <motion.div key={i} className="hero-stat-card absolute flex min-h-[54px] items-center gap-1.5 px-2.5 py-2 rounded-xl bg-[#161616] border border-[#f5f0e6]/[0.08]"
+            style={{ top: n.y, left: cardLeft, transform: 'translateY(-50%)', minWidth: CARD_W }}
+            initial={{ opacity: 0, x: isRight ? 16 : -16 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45, delay: 1.0 + i * 0.18, ease: 'easeOut' }}
+          >
             <span className={`flex items-center justify-center w-7 h-7 rounded-lg bg-[#b7f34a] shrink-0`}>
-            <Icon className="w-3.5 h-3.5 text-[#0d0d0d]" />
-          </span>
-          <div className="leading-none">
-            <p className="text-[11px] font-black font-mono text-[#b7f34a]">
-              <span ref={ref}>{val}</span>{stat.suffix}
-            </p>
-            <p className="text-[8px] text-[#8a8680] font-medium mt-0.5 leading-tight whitespace-nowrap">{stat.label}</p>
-            <p className="text-[8px] text-[#8a8680] font-medium leading-tight whitespace-nowrap">{stat.detail}</p>
-          </div>
-        </motion.div>
-      );
-    })}
-  </div>
-);
+              <Icon className="w-3.5 h-3.5 text-[#0d0d0d]" />
+            </span>
+            <div className="leading-none">
+              <p className="text-[11px] font-black font-mono text-[#b7f34a]">
+                <span ref={ref}>{val}</span>{stat.suffix}
+              </p>
+              <p className="text-[8px] text-[#8a8680] font-medium mt-0.5 leading-tight whitespace-nowrap">{stat.label}</p>
+              <p className="text-[8px] text-[#8a8680] font-medium leading-tight whitespace-nowrap">{stat.detail}</p>
+            </div>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+};
 
 export const Hero: React.FC = () => {
   const { currentTheme } = useTheme();
