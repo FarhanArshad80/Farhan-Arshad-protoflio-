@@ -39,14 +39,14 @@ const SNAKE_PATH =
   `M ${SNAKE_NODES[0].x} ${SNAKE_NODES[0].y} C 48 70, 12 90, ${SNAKE_NODES[1].x} ${SNAKE_NODES[1].y} ` +
   `C 12 150, 48 170, ${SNAKE_NODES[2].x} ${SNAKE_NODES[2].y} C 48 230, 12 250, ${SNAKE_NODES[3].x} ${SNAKE_NODES[3].y}`;
 
-const SnakePanel: React.FC<{ gradientClass: string }> = ({ gradientClass }) => (
+const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => (
   <div className="relative select-none flex-shrink-0" style={{ width: SNK_W, height: SNK_H, overflow: 'visible' }}>
     <svg viewBox={`0 0 ${SNK_W} ${SNK_H}`} width={SNK_W} height={SNK_H} className="absolute inset-0 pointer-events-none" style={{ overflow: 'visible' }}>
       <defs>
         <linearGradient id="snkG" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#b7f34a" />
-          <stop offset="50%" stopColor="#d4f97d" />
-          <stop offset="100%" stopColor="#a3e635" />
+          <stop offset="0%" stopColor={accentHex} />
+          <stop offset="50%" stopColor={accentHex} />
+          <stop offset="100%" stopColor={accentHex} />
         </linearGradient>
       </defs>
       <motion.path d={SNAKE_PATH} stroke="url(#snkG)" strokeWidth="2" strokeLinecap="round" strokeDasharray="6 8" fill="none"
@@ -163,7 +163,7 @@ export const Hero: React.FC = () => {
           className="lg:col-span-3 flex items-center justify-center" style={{ overflow: 'visible' }}
         >
           <motion.div style={{ y: panelY, opacity: panelOpacity, overflow: 'visible' }}>
-            <SnakePanel gradientClass={currentTheme.gradientClass} />
+            <SnakePanel accentHex={currentTheme.accentHex} />
           </motion.div>
         </motion.div>
 
