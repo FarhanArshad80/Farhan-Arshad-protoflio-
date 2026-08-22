@@ -73,3 +73,121 @@ html[data-theme='minimal-light'] .bg-grid-pattern {
 
 .glass-card { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
 .glass-card:hover { transform: translateY(-4px); }
+
+/* Garden Green theme overrides for legacy utility classes */
+html[data-theme='cyber-neon'] body {
+  background: #F7FAF7;
+  color: #0F172A;
+}
+
+html[data-theme='cyber-neon'] .portfolio-shell {
+  background-color: #F7FAF7 !important;
+  color: #0F172A !important;
+}
+
+html[data-theme='cyber-neon'] footer {
+  background-color: #F7FAF7 !important;
+}
+
+html[data-theme='cyber-neon'] [class*="bg-[#161616]"],
+html[data-theme='cyber-neon'] [class*="bg-[#0d0d0d]"],
+html[data-theme='cyber-neon'] [class*="bg-slate-950"],
+html[data-theme='cyber-neon'] [class*="bg-slate-900"] {
+  background-color: #FFFFFF !important;
+}
+
+html[data-theme='cyber-neon'] [class*="bg-slate-800"],
+html[data-theme='cyber-neon'] [class*="bg-black"] {
+  background-color: #F7FAF7 !important;
+}
+
+html[data-theme='cyber-neon'] [class*="border-[#f5f0e6]"],
+html[data-theme='cyber-neon'] [class*="border-slate-"],
+html[data-theme='cyber-neon'] [class*="border-white"] {
+  border-color: #E2E8E2 !important;
+}
+
+html[data-theme='cyber-neon'] [class*="text-[#f5f0e6]"],
+html[data-theme='cyber-neon'] [class*="text-white"] {
+  color: #0F172A !important;
+}
+
+html[data-theme='cyber-neon'] [class*="text-[#c8c3b8]"],
+html[data-theme='cyber-neon'] [class*="text-[#a8a39a]"],
+html[data-theme='cyber-neon'] [class*="text-slate-300"],
+html[data-theme='cyber-neon'] [class*="text-slate-400"] {
+  color: #475569 !important;
+}
+
+html[data-theme='cyber-neon'] [class*="text-[#8a8680]"],
+html[data-theme='cyber-neon'] [class*="text-[#5a5650]"],
+html[data-theme='cyber-neon'] [class*="text-slate-500"],
+html[data-theme='cyber-neon'] [class*="text-slate-600"] {
+  color: #64748B !important;
+}
+
+html[data-theme='cyber-neon'] [class*="text-[#b7f34a]"],
+html[data-theme='cyber-neon'] [class*="text-orange-"],
+html[data-theme='cyber-neon'] [class*="text-cyan-"],
+html[data-theme='cyber-neon'] [class*="text-violet-"],
+html[data-theme='cyber-neon'] [class*="text-indigo-"],
+html[data-theme='cyber-neon'] [class*="text-purple-"],
+html[data-theme='cyber-neon'] [class*="text-emerald-"],
+html[data-theme='cyber-neon'] [class*="text-amber-"] {
+  color: #40916C !important;
+}
+
+html[data-theme='cyber-neon'] [class*="bg-[#b7f34a]"],
+html[data-theme='cyber-neon'] [class*="bg-orange-"],
+html[data-theme='cyber-neon'] [class*="bg-cyan-"],
+html[data-theme='cyber-neon'] [class*="bg-violet-"],
+html[data-theme='cyber-neon'] [class*="bg-indigo-"],
+html[data-theme='cyber-neon'] [class*="bg-purple-"] {
+  background-color: #2E7D32 !important;
+}
+
+html[data-theme='cyber-neon'] [class*="from-[#b7f34a]"] {
+  --tw-gradient-from: #2E7D32 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: #40916C var(--tw-gradient-to-position) !important;
+}
+
+html[data-theme='cyber-neon'] [class*="bg-[#b7f34a]"][class*="text-[#0d0d0d]"],
+html[data-theme='cyber-neon'] [class*="bg-[#b7f34a]"][class*="text-white"],
+html[data-theme='cyber-neon'] [class*="bg-orange-"][class*="text-white"],
+html[data-theme='cyber-neon'] [class*="from-[#b7f34a]"][class*="text-white"] {
+  color: #FFFFFF !important;
+}
+
+html[data-theme='cyber-neon'] [class*="border-[#b7f34a]"],
+html[data-theme='cyber-neon'] [class*="border-orange-"],
+html[data-theme='cyber-neon'] [class*="border-cyan-"],
+html[data-theme='cyber-neon'] [class*="border-violet-"],
+html[data-theme='cyber-neon'] [class*="border-indigo-"],
+html[data-theme='cyber-neon'] [class*="border-emerald-"] {
+  border-color: #40916C !important;
+}
+
+html[data-theme='cyber-neon'] [class*="shadow-[#b7f34a]"],
+html[data-theme='cyber-neon'] [class*="shadow-orange-"],
+html[data-theme='cyber-neon'] [class*="shadow-cyan-"],
+html[data-theme='cyber-neon'] [class*="shadow-violet-"] {
+  --tw-shadow-color: rgb(64 145 108 / 0.2) !important;
+}
+
+html[data-theme='cyber-neon'] [class*="hover:bg-[#b7f34a]"]:hover,
+html[data-theme='cyber-neon'] [class*="hover:bg-orange-"]:hover {
+  background-color: #1B4332 !important;
+}
+
+html[data-theme='cyber-neon'] [class*="hover:text-[#b7f34a]"]:hover,
+html[data-theme='cyber-neon'] [class*="hover:text-orange-"]:hover,
+html[data-theme='cyber-neon'] [class*="hover:text-cyan-"]:hover,
+html[data-theme='cyber-neon'] [class*="hover:text-violet-"]:hover {
+  color: #1B4332 !important;
+}
+
+html[data-theme='cyber-neon'] select,
+html[data-theme='cyber-neon'] input,
+html[data-theme='cyber-neon'] textarea {
+  color-scheme: light;
+}

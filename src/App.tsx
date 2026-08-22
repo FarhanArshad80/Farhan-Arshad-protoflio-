@@ -31,7 +31,7 @@ function MainAppContent() {
         )}
       </AnimatePresence>
 
-      <div className={`min-h-screen relative font-sans transition-colors duration-500 ${currentTheme.bgClass}`}>
+      <div className={`portfolio-shell min-h-screen relative font-sans transition-colors duration-500 ${currentTheme.bgClass}`}>
         {/* Dynamic particle background */}
         <CanvasBackground />
 
