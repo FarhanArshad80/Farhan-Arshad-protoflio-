@@ -86,29 +86,14 @@ export function generateCV(): void {
 
   // SKILLS
   sectionHeader('TECHNICAL SKILLS');
-  const catMap: { label: string; key: string }[] = [
-    { label: 'Frontend', key: 'frontend' },
-    { label: 'Backend', key: 'backend' },
-    { label: 'Database', key: 'database' },
-    { label: 'Tools', key: 'tools' },
-  ];
-  catMap.forEach(({ label, key }) => {
-    const skills = PORTFOLIO_DATA.skills
-      .filter((s) => s.category === key)
-      .map((s) => s.name);
-    if (!skills.length) return;
-    checkPage(7);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(55, 55, 55);
-    doc.text(`${label}:`, ML, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(80, 80, 80);
-    const sl = doc.splitTextToSize(skills.join(', '), CW - 22);
-    doc.text(sl, ML + 22, y);
-    y += Math.max(sl.length * 4.2, 4.2) + 1.5;
-  });
-  y += 2;
+  checkPage(10);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.setTextColor(80, 80, 80);
+  const skills = PORTFOLIO_DATA.skills.map((skill) => `${skill.name} (${skill.techTags.join(', ')})`);
+  const skillLines = doc.splitTextToSize(skills.join('  •  '), CW);
+  doc.text(skillLines, ML, y);
+  y += skillLines.length * 4.2 + 3;
 
   // EXPERIENCE
   sectionHeader('WORK EXPERIENCE');

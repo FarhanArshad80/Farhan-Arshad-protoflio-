@@ -19,7 +19,7 @@ export const ExperienceSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#f5f0e6]">
             Work <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>Experience & Track Record</span>
           </h2>
-          <p className="text-[#8a8680] text-base sm:text-lg">Proven trajectory building software products, leading engineering squads, and deploying robust systems.</p>
+          <p className="text-[#8a8680] text-base sm:text-lg">Proven track record of building performant web applications, designing scalable APIs, and delivering reliable software solutions.</p>
         </div>
 
         <div className="max-w-4xl mx-auto">

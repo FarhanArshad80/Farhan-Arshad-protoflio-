@@ -3,9 +3,10 @@ import { Skill, Project, Experience, Education, Certification, Testimonial } fro
 export const PORTFOLIO_DATA = {
   profile: {
     name: 'Farhan Arshad',
-    title: 'Full Stack Developer | MERN & NestJS Specialist',
-    tagline: 'Crafting high-performance MERN stack web applications, scalable NestJS microservices, and elegant user interfaces.',
-    bio: 'Full Stack Developer with deep expertise in React, NestJS, MongoDB, Express, and Node.js. Specialized in architecting robust RESTful APIs, modern reactive frontends, clean database schemas, version control via Git & GitHub, cloud deployments, automated testing, and long-term code maintenance.',
+    title: 'Full-Stack MERN Engineer',
+    tagline: 'Building high-performance MERN web apps and backend microservices that scale your business revenue.',
+    bio: 'I am a Full-Stack Web Developer focused on building fast, maintainable, and production-ready web applications. My core expertise spans React, Node.js, Express, and MongoDB, along with building scalable microservices using NestJS.',
+    bioSecondary: 'I bridge the gap between clean frontend interfaces and solid backend architecture. Whether it\'s building a complete web application from scratch, optimizing database performance, or integrating third-party APIs, I deliver reliable code that scales smoothly as your business grows.',
     location: 'Lahore, Pakistan (Available Remote Worldwide)',
     email: 'farhanarshad15926@gmail.com',
     phone: '0326 4082349',
@@ -18,34 +19,18 @@ export const PORTFOLIO_DATA = {
     timeZone: 'PKT (UTC+5)',
   },
   stats: [
-    { label: 'Years Experience', value: '3+', suffix: '' },
-    { label: 'Completed Projects', value: '30+', suffix: '' },
-    { label: 'Client Satisfaction', value: '100%', suffix: '' },
-    { label: 'GitHub Commits', value: '2.4k+', suffix: '' },
+    { label: 'Year Experience', value: '1+', suffix: '' },
+    { label: 'Projects', value: '10+', suffix: '' },
+    { label: 'Client Satisfaction', value: '95%', suffix: '' },
+    { label: 'Network', value: '1K+', suffix: '' },
   ],
   skills: [
-    // Frontend
-    { id: 'react', name: 'React.js & Next.js', category: 'frontend', proficiency: 96, yearsOfExp: 3, iconName: 'Code2', description: 'Hooks, Redux Toolkit, Context API, SSR, performance optimization', featured: true },
-    { id: 'typescript', name: 'TypeScript & JS (ES6+)', category: 'frontend', proficiency: 92, yearsOfExp: 3, iconName: 'FileCode', description: 'Strict typing, modern async/await patterns, clean modular code', featured: true },
-    { id: 'tailwind', name: 'Tailwind CSS & UI Design', category: 'frontend', proficiency: 98, yearsOfExp: 3, iconName: 'Palette', description: 'Responsive fluid layouts, glassmorphism, animations, dark mode', featured: true },
-    { id: 'framer', name: 'Motion / Animations', category: 'frontend', proficiency: 90, yearsOfExp: 2, iconName: 'Sparkles', description: 'Card 3D tilt, gesture interactions, page reveal triggers', featured: true },
-
-    // Backend
-    { id: 'nodejs', name: 'Node.js & Express.js', category: 'backend', proficiency: 95, yearsOfExp: 3, iconName: 'Server', description: 'Event loop architecture, REST API design, middleware pipeline', featured: true },
-    { id: 'nestjs', name: 'NestJS Framework', category: 'backend', proficiency: 92, yearsOfExp: 2, iconName: 'Boxes', description: 'Enterprise TypeScript backend, dependency injection, modules', featured: true },
-    { id: 'auth', name: 'Auth & Security (JWT, OAuth)', category: 'backend', proficiency: 94, yearsOfExp: 3, iconName: 'ShieldCheck', description: 'Bcrypt hashing, JWT access/refresh tokens, CORS, rate limiting', featured: true },
-    { id: 'websockets', name: 'WebSockets & Socket.io', category: 'backend', proficiency: 88, yearsOfExp: 2, iconName: 'Zap', description: 'Real-time bidirectional messaging, live status, notifications', featured: false },
-
-    // Database
-    { id: 'mongodb', name: 'MongoDB & Mongoose', category: 'database', proficiency: 96, yearsOfExp: 3, iconName: 'HardDrive', description: 'Schema modeling, indexing, aggregation pipelines, transaction support', featured: true },
-    { id: 'postgresql', name: 'PostgreSQL & SQL', category: 'database', proficiency: 88, yearsOfExp: 2, iconName: 'Database', description: 'Relational queries, foreign keys, Prisma/Sequelize ORMs', featured: true },
-    { id: 'redis', name: 'Redis Caching', category: 'database', proficiency: 85, yearsOfExp: 2, iconName: 'Layers', description: 'Session management, high-speed API caching, rate limiting', featured: false },
-
-    // Tools, Deployment, Testing & Maintenance
-    { id: 'git', name: 'Git & GitHub', category: 'tools', proficiency: 96, yearsOfExp: 3, iconName: 'GitBranch', description: 'Branching strategies, PR code reviews, merge conflict resolution', featured: true },
-    { id: 'deployments', name: 'Deployments & Cloud Hosting', category: 'tools', proficiency: 92, yearsOfExp: 3, iconName: 'Cloud', description: 'Vercel, Render, Netlify, Docker containerization, AWS S3', featured: true },
-    { id: 'testing', name: 'Testing & Postman', category: 'tools', proficiency: 90, yearsOfExp: 3, iconName: 'CheckCircle', description: 'Jest unit tests, API integration tests with Postman suites', featured: true },
-    { id: 'maintenance', name: 'Code Maintenance & Optimization', category: 'tools', proficiency: 94, yearsOfExp: 3, iconName: 'Wrench', description: 'Refactoring, bug fixes, database query tuning, security patches', featured: true },
+    { id: 'full-stack-web-development', name: 'Full-Stack Web Development', category: 'frontend', iconName: 'Code2', description: 'Building custom, end-to-end web applications tailored to your business needs. Focus on high performance, SEO optimization, intuitive design, and clean, scalable architecture from frontend to database.', techTags: ['React', 'Next.js', 'Node.js', 'MongoDB'] },
+    { id: 'backend-microservices', name: 'Backend & Microservices Architecture', category: 'backend', iconName: 'Server', description: 'Designing secure RESTful APIs, microservices, and database systems that handle complex business logic. Built with optimized queries, reliable authentication, and zero-downtime maintenance.', techTags: ['NestJS', 'Express.js', 'MongoDB', 'REST APIs'] },
+    { id: 'ui-performance', name: 'UI Refactoring & Performance Tuning', category: 'frontend', iconName: 'Gauge', description: 'Transforming slow or outdated web applications into fast, modern digital products. Improving page load speed, fixing layout responsiveness, and upgrading legacy codebases.', techTags: ['Tailwind CSS', 'TypeScript', 'Web Vitals', 'Refactoring'] },
+    { id: 'api-integration', name: 'API Development & Integration', category: 'backend', iconName: 'Plug', description: 'Designing secure RESTful APIs with clean, modular architecture, JWT authentication, smooth third-party integrations, and structured Postman documentation.', techTags: ['REST APIs', 'Express', 'NestJS', 'JWT'] },
+    { id: 'deployment-maintenance', name: 'Deployment & Maintenance', category: 'tools', iconName: 'Cloud', description: 'Setting up smooth web application hosting with environment configuration, SSL setup, zero-downtime deployment pipelines, and long-term bug fixing.', techTags: ['Vercel', 'Render', 'Netlify', 'Git/GitHub'] },
+    { id: 'responsive-conversion-ui', name: 'Responsive UI & Conversion', category: 'frontend', iconName: 'MonitorSmartphone', description: 'Converting Figma designs into pixel-perfect, responsive web interfaces using Tailwind CSS with smooth animations, dark/light modes, and clean UX design.', techTags: ['Tailwind CSS', 'Framer Motion', 'Figma', 'HTML5/CSS3'] },
   ] as Skill[],
 
   projects: [
@@ -187,49 +172,44 @@ export class TasksService {
   experiences: [
     {
       id: 'exp-1',
-      role: 'Senior Full Stack Developer (MERN Stack)',
-      company: 'TechCraft Software Solutions',
-      location: 'Lahore, PK (Hybrid / Remote)',
-      period: '2023 - Present',
-      description: 'Lead engineer developing high-scale web applications, REST APIs, and client platforms. Responsible for backend architecture in Node.js/NestJS and reactive frontends in React.',
+      role: 'Full-Stack Web Developer',
+      company: 'Independent Freelancer',
+      location: 'Remote',
+      period: '2025 – Present',
+      description: 'Delivering end-to-end MERN stack web platforms, custom REST APIs, and responsive web applications for international clients.',
       highlights: [
-        'Architected and deployed 15+ custom MERN stack applications for international clients with 99.9% uptime.',
-        'Engineered NestJS backend APIs reducing response times by 40% through MongoDB indexing and Redis caching.',
-        'Established automated CI/CD deployment pipelines on Vercel and Docker servers via GitHub Actions.',
-        'Maintained and refactored legacy codebases to improve maintainability, speed, and test coverage.'
+        'Architected and deployed production web applications using React, Express, Node.js, and MongoDB.',
+        'Integrated payment gateways and authentication systems, and optimized databases for fast response times.'
       ],
-      skills: ['React', 'Node.js', 'Express.js', 'NestJS', 'MongoDB', 'TypeScript', 'Git & GitHub'],
-      type: 'full-time'
+      skills: ['React', 'Express', 'Node.js', 'MongoDB', 'REST APIs'],
+      type: 'contract'
     },
     {
       id: 'exp-2',
-      role: 'Full Stack Web Engineer',
-      company: 'InnoTech Systems',
-      location: 'Lahore, PK',
-      period: '2022 - 2023',
-      description: 'Engineered responsive web interfaces and Express REST microservices. Worked directly with client product managers to implement core business features.',
+      role: 'Software Engineer',
+      company: 'TechTide Corporate',
+      location: 'Remote',
+      period: '2026 – Present',
+      description: 'Engineering scalable web application modules, RESTful backend APIs, and collaborative frontend architectures.',
       highlights: [
-        'Developed interactive React dashboards with real-time charts and data tables.',
-        'Integrated third-party payment gateways (Stripe, PayPal) and RESTful third-party APIs.',
-        'Performed unit & integration testing using Jest and Postman, ensuring zero critical production bugs.'
+        'Developed production-ready React components and integrated complex backend microservices.',
+        'Optimized API endpoints and streamlined database queries within an agile engineering team.'
       ],
-      skills: ['React', 'JavaScript', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
+      skills: ['React', 'Node.js', 'NestJS', 'REST APIs', 'MongoDB'],
       type: 'full-time'
     },
     {
       id: 'exp-3',
-      role: 'Freelance MERN Developer & Consultant',
-      company: 'Upwork & Independent Clients',
+      role: 'Associate Software Engineer',
+      company: 'Qalam Software / Engineering Program',
       location: 'Remote',
-      period: '2021 - 2022',
-      description: 'Built custom websites, SaaS MVPs, e-commerce stores, and custom REST API integrations for startups and small businesses worldwide.',
+      period: '2025',
+      description: 'Focused on modern web application architecture, database management, and clean code principles.',
       highlights: [
-        'Successfully completed 20+ freelance contracts with 5-star ratings across web development.',
-        'Helped clients optimize existing web app performance, fix database bottlenecks, and set up continuous deployments.',
-        'Provided ongoing monthly technical support, security patching, and app maintenance.'
+        'Built full-stack web modules using JavaScript toolchains, REST APIs, and structured database designs.'
       ],
-      skills: ['MERN Stack', 'React', 'Express', 'MongoDB', 'Git', 'Deployments'],
-      type: 'contract'
+      skills: ['JavaScript', 'React', 'REST APIs', 'MongoDB'],
+      type: 'full-time'
     }
   ] as Experience[],
 

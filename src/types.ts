@@ -16,10 +16,9 @@ export interface Skill {
   id: string;
   name: string;
   category: 'frontend' | 'backend' | 'database' | 'ai-cloud' | 'tools';
-  proficiency: number; // 0-100
-  yearsOfExp: number;
   iconName: string;
   description: string;
+  techTags: string[];
   featured?: boolean;
 }
 

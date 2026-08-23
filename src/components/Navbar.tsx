@@ -51,7 +51,7 @@ export const Navbar: React.FC = () => {
             <span className="font-extrabold text-base tracking-tight text-[#f5f0e6] group-hover:text-[#b7f34a] transition-colors">
               {PORTFOLIO_DATA.profile.name}
             </span>
-            <span className="text-[11px] font-mono text-[#8a8680]">Full Stack Developer</span>
+            <span className="text-[11px] font-mono text-[#8a8680]">Full-Stack MERN Engineer</span>
           </div>
         </a>
 

@@ -17,7 +17,7 @@ export const ContactSection: React.FC = () => {
             <div className="h-px w-8 bg-[#f5f0e6]/15" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#f5f0e6]">
-            Reach Out to <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>Farhan Arshad</span>
+            Let's <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>Work Together</span>
           </h2>
           <p className="text-[#8a8680] text-base sm:text-lg">Have a project in mind or want to hire me for full-stack web development? Fill in the enquiry form and I'll get back to you promptly.</p>
         </div>

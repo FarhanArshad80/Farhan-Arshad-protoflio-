@@ -20,7 +20,7 @@ export const AboutSection: React.FC = () => {
             About <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>me</span>
           </h2>
           <p className="text-[#8a8680] text-base sm:text-lg">
-            Full Stack Developer specializing in MERN Stack, NestJS microservices, REST APIs, Git/GitHub, deployments, and full project lifecycle maintenance.
+            Full-Stack Developer crafting fast MERN web apps, scalable APIs, and clean user experiences.
           </p>
         </div>
 
@@ -61,19 +61,19 @@ export const AboutSection: React.FC = () => {
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="lg:col-span-7 space-y-6">
             <div className="space-y-4 text-[#a8a39a] leading-relaxed text-sm sm:text-base">
               <p>{PORTFOLIO_DATA.profile.bio}</p>
-              <p>Whether building complex MERN stack web platforms from the ground up, implementing NestJS microservices, tuning MongoDB performance, or deploying containerized apps with zero-downtime, I prioritize clean code architecture and seamless user experiences.</p>
+              <p>{PORTFOLIO_DATA.profile.bioSecondary}</p>
             </div>
 
             <div className="pt-2 space-y-3">
               <h4 className="text-xs font-mono font-bold text-[#5a5650] uppercase tracking-wider">PRIMARY COMPETENCIES:</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  'Full Stack MERN Architecture (React, Express, Node, MongoDB)',
-                  'Enterprise NestJS TypeScript Microservices',
-                  'Git & GitHub Version Control & Code Reviews',
-                  'Cloud Deployments (Vercel, Render, Netlify, Docker)',
-                  'Automated Unit & Integration Testing (Jest, Postman)',
-                  'Long-term App Refactoring, Bug Fixing & Maintenance',
+                  'Full-Stack MERN Architecture (React, Node.js, Express, MongoDB)',
+                  'Scalable Microservices & APIs (NestJS, RESTful APIs)',
+                  'Clean Code & Refactoring (Maintainable & Modular Code)',
+                  'Version Control & Workflows (Git, GitHub, Collaborative Workflows)',
+                  'Cloud Deployment & Hosting (Vercel, Render, Netlify)',
+                  'API Testing & Debugging (Postman, Performance Tuning)',
                 ].map((item, index) => (
                   <motion.div key={index} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }} whileHover={{ scale: 1.03, y: -3 }}

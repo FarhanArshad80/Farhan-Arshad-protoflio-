@@ -65,7 +65,7 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         transition={{ duration: 0.45, delay: 0.45 }}
         className="text-[11px] font-mono text-[#475569] tracking-[0.22em] uppercase mb-10"
       >
-        Full Stack Developer
+        Full-Stack MERN Engineer
       </motion.p>
 
       <motion.div

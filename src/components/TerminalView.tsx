@@ -80,10 +80,10 @@ export const TerminalView: React.FC = () => {
       output = (
         <div className="space-y-1 text-slate-300">
           <div className="text-purple-400 font-bold">Technical Skills:</div>
-          {PORTFOLIO_DATA.skills.slice(0, 8).map((s) => (
-            <div key={s.id} className="flex justify-between w-64">
+          {PORTFOLIO_DATA.skills.map((s) => (
+            <div key={s.id} className="space-y-0.5">
               <span className="text-cyan-300">{s.name}:</span>
-              <span className="text-emerald-400 font-bold">{s.proficiency}%</span>
+              <div className="text-slate-400 text-xs">{s.techTags.join(', ')}</div>
             </div>
           ))}
         </div>

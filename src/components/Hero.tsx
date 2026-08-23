@@ -7,15 +7,17 @@ import { useTheme } from '../context/ThemeContext';
 import profileImage from '../../assets/profile.jpg';
 
 const ROTATING_ROLES = [
-  'Full Stack Developer', 'MERN Stack Engineer', 'NestJS API Specialist',
-  'MongoDB & Database Architect', 'React UI Craftsperson',
+  'Full-Stack MERN Engineer',
+  'Scalable Web App Architect',
+  'NestJS Microservices Specialist',
+  'Conversion-Focused UI Developer',
 ];
 
 const STATS = [
-  { icon: Calendar, end: 3, suffix: '+', label: 'Years', detail: 'Experience' },
-  { icon: FolderGit2, end: 30, suffix: '+', label: 'Projects', detail: 'Completed' },
-  { icon: ThumbsUp, end: 100, suffix: '%', label: 'Client', detail: 'Satisfaction' },
-  { icon: Users, end: 24, suffix: 'K+', label: 'Professional', detail: 'Network' },
+  { icon: Calendar, end: 1, suffix: '+', label: 'Year', detail: 'Experience' },
+  { icon: FolderGit2, end: 10, suffix: '+', label: 'Projects', detail: '' },
+  { icon: ThumbsUp, end: 95, suffix: '%', label: 'Client', detail: 'Satisfaction' },
+  { icon: Users, end: 1, suffix: 'K+', label: 'Network', detail: '' },
 ];
 
 function useCountUp(end: number, duration = 1.2, startDelay = 0) {
@@ -103,7 +105,7 @@ const SnakePanel: React.FC<{ accentHex: string }> = ({ accentHex }) => {
                 <span ref={ref}>{val}</span>{stat.suffix}
               </p>
               <p className="text-[8px] text-[#8a8680] font-medium mt-0.5 leading-tight whitespace-nowrap">{stat.label}</p>
-              <p className="text-[8px] text-[#8a8680] font-medium leading-tight whitespace-nowrap">{stat.detail}</p>
+              {stat.detail && <p className="text-[8px] text-[#8a8680] font-medium leading-tight whitespace-nowrap">{stat.detail}</p>}
             </div>
           </motion.div>
         );
