@@ -1,7 +1,8 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { Globe, Smartphone, Brain, Plug, Cloud, Paintbrush } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { SectionHeading } from './motion/SectionHeading';
+import { SpotlightCard } from './motion/SpotlightCard';
 
 export const SERVICES_LIST = [
   'Web Development', 'Mobile App Development', 'AI Solutions',
@@ -18,32 +19,29 @@ const SERVICES = [
 ];
 
 export const ServicesSection: React.FC = () => {
-  const { currentTheme, setHireMeModalOpen } = useTheme();
+  const { setHireMeModalOpen } = useTheme();
 
   return (
     <section id="services" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="flex items-center justify-center gap-3">
-            <div className="h-px w-8 bg-[#f5f0e6]/15" />
-            <span className="text-xs font-mono text-[#5a5650] tracking-widest uppercase">What I Offer</span>
-            <div className="h-px w-8 bg-[#f5f0e6]/15" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#f5f0e6]">
-            Services & <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>Expertise</span>
-          </h2>
-          <p className="text-[#8a8680] text-base sm:text-lg">End-to-end software solutions tailored to your business — from ideation and design to deployment and ongoing maintenance.</p>
-        </div>
+        <SectionHeading
+          eyebrow="What I Offer"
+          title="Services &amp;"
+          highlight="Expertise"
+          subtitle="End-to-end software solutions tailored to your business — from ideation and design to deployment and ongoing maintenance."
+          className="mb-16"
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, index) => {
             const Icon = service.icon;
             return (
-              <motion.div key={service.id} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }}
+              <SpotlightCard key={service.id} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }} whileHover={{ y: -5 }}
-                className="group relative flex flex-col p-6 rounded-3xl bg-[#161616] border border-[#f5f0e6]/[0.07] hover:border-[#b7f34a]/30 transition-all duration-300 shadow-lg hover:shadow-[#b7f34a]/10"
+                className="p-6 rounded-3xl bg-[#161616] border border-[#f5f0e6]/[0.07] hover:border-[#b7f34a]/30 transition-all duration-300 shadow-lg hover:shadow-[#b7f34a]/10"
+                contentClassName="flex flex-col h-full"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#b7f34a] flex items-center justify-center mb-5 shadow-lg shadow-[#b7f34a]/20 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 rounded-2xl bg-[#b7f34a] flex items-center justify-center mb-5 shadow-lg shadow-[#b7f34a]/20 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                   <Icon className="w-6 h-6 text-[#0d0d0d]" />
                 </div>
                 <h3 className="text-lg font-bold text-[#f5f0e6] mb-2">{service.title}</h3>
@@ -54,11 +52,11 @@ export const ServicesSection: React.FC = () => {
                   ))}
                 </div>
                 <button onClick={() => setHireMeModalOpen(true, service.title)}
-                  className="mt-4 w-full py-2.5 rounded-xl text-xs font-bold text-[#0d0d0d] bg-[#b7f34a] opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md"
+                  className="mt-4 w-full py-2.5 rounded-xl text-xs font-bold text-[#0d0d0d] bg-[#b7f34a] shadow-md opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 focus-visible:opacity-100 focus-visible:translate-y-0"
                 >
                   Select This Service →
                 </button>
-              </motion.div>
+              </SpotlightCard>
             );
           })}
         </div>

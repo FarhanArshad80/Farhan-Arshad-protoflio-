@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 @layer base {
+  html,
+  body {
+    /* Decorative overflow (glow filters, the marquee track) must never turn
+       into a sideways scroll on a phone. */
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
   html {
     scroll-behavior: smooth;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -69,6 +77,211 @@ html[data-theme='minimal-light'] .bg-grid-pattern {
   background: linear-gradient(90deg, rgba(37,99,235,0) 0%, rgba(37,99,235,0.08) 50%, rgba(37,99,235,0) 100%);
   background-size: 200% 100%;
   animation: shimmer 3s infinite;
+}
+
+/* --- Hero fit ----------------------------------------------------------- */
+
+/*
+ * The hero is a single full-height panel, so its whole stack — including the
+ * Download CV / Explore Projects row — has to survive inside 100svh. On short
+ * laptop screens the default rhythm pushed that row below the fold, so the
+ * padding and spacing tighten with the viewport height instead of the width
+ * (a 1280x570 laptop is still `xl` by width, so width breakpoints can't see
+ * this). The id keeps these ahead of the Tailwind space-y utility.
+ */
+@media (max-height: 800px) {
+  #hero {
+    padding-top: 6.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  #hero .hero-copy > * + * {
+    margin-top: 1.25rem;
+  }
+}
+
+@media (max-height: 680px) {
+  #hero {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  #hero .hero-copy > * + * {
+    margin-top: 0.75rem;
+  }
+
+  /* The headline is the single biggest block in the stack; easing it down one
+     step buys the ~30px that keeps the buttons above the fold. */
+  #hero h1 {
+    font-size: 3rem;
+  }
+}
+
+/* --- Hero portrait ------------------------------------------------------ */
+
+/* Cut-out portrait on a flat white disc — no gradient or fade, so the white
+   reads as one clean tone rather than a shadow across the bottom. */
+.hero-portrait {
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+}
+
+@media (max-height: 680px) {
+  #hero .hero-portrait {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+/* --- Marquee ------------------------------------------------------------ */
+
+.marquee {
+  /* Soften both ends so words enter and leave instead of being clipped. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+@keyframes marqueeScroll {
+  from { transform: translate3d(0, 0, 0); }
+  /* Exactly one of the two copies, which is what makes the loop seamless. */
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.marquee-track {
+  animation-name: marqueeScroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  .marquee {
+    overflow-x: auto;
+  }
+}
+
+/* --- Overlay scrims ----------------------------------------------------- */
+
+/*
+ * The theme layer below rewrites any class containing `bg-[#0d0d0d]` or
+ * `bg-slate-950` to a flat opaque colour, which stripped the alpha off every
+ * modal backdrop and off the project card gradient scrim. These dedicated
+ * class names sit outside those attribute selectors so the transparency holds.
+ */
+.modal-scrim {
+  background-color: rgba(13, 13, 13, 0.7);
+}
+
+html[data-theme='cyber-neon'] .modal-scrim,
+html[data-theme='minimal-light'] .modal-scrim {
+  background-color: rgba(15, 23, 42, 0.45);
+}
+
+.card-scrim {
+  background-color: rgba(13, 13, 13, 0.2);
+}
+
+/* --- Signature motion -------------------------------------------------- */
+
+/* A slow light sweep across the name in the hero. */
+@keyframes nameSheen {
+  0%, 62% { background-position: 0% 50%; }
+  100%    { background-position: 200% 50%; }
+}
+
+.hero-name-sheen {
+  background-size: 200% auto;
+  animation: nameSheen 6s ease-in-out infinite;
+}
+
+/* One-shot gloss that crosses an element when its group is hovered. */
+.card-sheen {
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.28) 48%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.group:hover .card-sheen {
+  transform: translateX(120%);
+}
+
+/* Same idea on the primary call to action, kept subtler. */
+.btn-shine {
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(120%);
+}
+
+/* Underline that grows out from the centre on hover. */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  height: 1px;
+  width: 0;
+  background: currentColor;
+  transition: width 0.28s ease, left 0.28s ease;
+}
+
+.link-underline:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+/* Honour the OS setting: strip decorative motion, keep the layout intact. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-sheen,
+  .btn-shine::after {
+    display: none;
+  }
 }
 
 .glass-card { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }

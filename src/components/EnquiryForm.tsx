@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { Send, CheckCircle2 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { PORTFOLIO_DATA } from "../data/portfolio";
@@ -14,6 +14,7 @@ interface EnquiryFormProps {
 
 export const EnquiryForm: React.FC<EnquiryFormProps> = ({ initialService, onSuccess, compact = false }) => {
   const { currentTheme } = useTheme();
+  const reduceMotion = useReducedMotion();
   const [service, setService] = useState(initialService || SERVICES_LIST[0]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,6 +27,27 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ initialService, onSucc
   const [errorMessage, setErrorMessage] = useState("");
 
   React.useEffect(() => { if (initialService) setService(initialService); }, [initialService]);
+
+  // One short burst on a successful send. Loaded on demand so the confetti
+  // bundle never reaches visitors who don't submit the form.
+  const celebrate = async () => {
+    if (reduceMotion) return;
+    try {
+      const confetti = (await import("canvas-confetti")).default;
+      confetti({
+        particleCount: 70,
+        spread: 65,
+        startVelocity: 34,
+        gravity: 0.9,
+        scalar: 0.85,
+        origin: { y: 0.6 },
+        colors: [currentTheme.accentHex, "#b7f34a", "#f5f0e6"],
+        disableForReducedMotion: true,
+      });
+    } catch {
+      // Confetti is decorative — a load failure must not affect the form.
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +67,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ initialService, onSucc
       await emailjs.send(serviceId, templateId, templateParams, { publicKey });
       setLoading(false);
       setSubmitted(true);
+      celebrate();
       const existing = JSON.parse(localStorage.getItem("enquiries") || "[]");
       existing.push({ service, name, email, contactNumber, projectDesc, budget, timeline, date: new Date().toISOString() });
       localStorage.setItem("enquiries", JSON.stringify(existing));
@@ -62,11 +85,17 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ initialService, onSucc
   if (submitted) {
     return (
       <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
         className={`${compact ? "py-8" : "p-8"} text-center space-y-5 rounded-3xl bg-[#161616] border border-[#f5f0e6]/[0.07] shadow-2xl`}
       >
-        <div className="w-16 h-16 rounded-full bg-[#b7f34a]/10 border border-[#b7f34a]/30 text-[#b7f34a] flex items-center justify-center mx-auto shadow-xl">
-          <CheckCircle2 className="w-8 h-8 animate-bounce" />
-        </div>
+        <motion.div
+          initial={{ scale: 0, rotate: -30 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: "spring", stiffness: 380, damping: 15, delay: 0.1 }}
+          className="w-16 h-16 rounded-full bg-[#b7f34a]/10 border border-[#b7f34a]/30 text-[#b7f34a] flex items-center justify-center mx-auto shadow-xl"
+        >
+          <CheckCircle2 className="w-8 h-8" />
+        </motion.div>
         <h3 className="text-2xl font-bold text-[#f5f0e6]">Enquiry Sent!</h3>
         <p className="text-[#a8a39a] max-w-md mx-auto text-sm leading-relaxed">
           Thank you, <span className="font-semibold text-[#f5f0e6]">{name}</span>. Your enquiry has been delivered directly to{" "}
@@ -127,7 +156,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ initialService, onSucc
           </div>
         </div>
         <button type="submit" disabled={loading}
-          className="w-full py-4 rounded-xl text-[#0d0d0d] font-bold text-sm bg-[#b7f34a] shadow-lg shadow-[#b7f34a]/20 hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+          className="btn-shine relative w-full py-4 rounded-xl text-[#0d0d0d] font-bold text-sm bg-[#b7f34a] shadow-lg shadow-[#b7f34a]/20 hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
         >
           {loading ? (
             <span className="flex items-center gap-2 font-mono text-xs">

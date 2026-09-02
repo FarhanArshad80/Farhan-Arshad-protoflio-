@@ -20,7 +20,11 @@ export const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState('about');
 
   useEffect(() => {
-    const handleScroll = () => {
+    // getBoundingClientRect forces layout, so coalesce the reads into one per
+    // frame instead of running them on every scroll event.
+    let frame = 0;
+    const measure = () => {
+      frame = 0;
       setScrolled(window.scrollY > 20);
       const sections = NAV_LINKS.map((l) => l.href.substring(1));
       for (const section of [...sections].reverse()) {
@@ -28,30 +32,41 @@ export const Navbar: React.FC = () => {
         if (el && el.getBoundingClientRect().top <= 220) { setActiveSection(section); break; }
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(measure);
+    };
+    measure();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
-    <header
+    <motion.header
       id="main-header"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled ? 'bg-[#0d0d0d]/95 border-b border-[#f5f0e6]/[0.07] py-3 shadow-xl backdrop-blur-2xl' : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-3 group" id="brand-logo-link">
+        <a href="#" className="flex items-center gap-2 sm:gap-3 group min-w-0 flex-shrink" id="brand-logo-link">
           <motion.div
             whileHover={{ scale: 1.08, rotate: 2 }} whileTap={{ scale: 0.95 }}
-            className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-[#b7f34a] text-[#0d0d0d] font-extrabold text-base shadow-lg shadow-[#b7f34a]/25"
+            className="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-xl bg-[#b7f34a] text-[#0d0d0d] font-extrabold text-sm sm:text-base shadow-lg shadow-[#b7f34a]/25"
           >
             FA
           </motion.div>
-          <div className="flex flex-col">
-            <span className="font-extrabold text-base tracking-tight text-[#f5f0e6] group-hover:text-[#b7f34a] transition-colors">
+          <div className="flex flex-col min-w-0">
+            <span className="font-extrabold text-sm sm:text-base tracking-tight text-[#f5f0e6] group-hover:text-[#b7f34a] transition-colors truncate">
               {PORTFOLIO_DATA.profile.name}
             </span>
-            <span className="text-[11px] font-mono text-[#8a8680]">Full-Stack MERN Engineer</span>
+            <span className="hidden sm:block text-[11px] font-mono text-[#8a8680] truncate">Full Stack Engineer</span>
           </div>
         </a>
 
@@ -62,7 +77,7 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.href} href={link.href} id={`nav-link-${link.href.substring(1)}`}
                 className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors ${
-                  isActive ? 'text-[#0d0d0d]' : 'text-[#8a8680] hover:text-[#f5f0e6]'
+                  isActive ? 'text-[#0d0d0d]' : 'text-[#8a8680] hover:text-[#f5f0e6] link-underline'
                 }`}
               >
                 {isActive && (
@@ -78,14 +93,14 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <motion.button
             whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
             onClick={() => setHireMeModalOpen(true)} id="navbar-hire-me-button"
-            className="flex items-center gap-2 px-4 py-1.5 text-xs font-bold rounded-xl text-[#0d0d0d] bg-[#b7f34a] shadow-lg shadow-[#b7f34a]/25 hover:brightness-110 transition-all"
+            className="btn-shine relative flex items-center gap-2 px-3 sm:px-4 py-1.5 text-xs font-bold rounded-xl text-[#0d0d0d] bg-[#b7f34a] shadow-lg shadow-[#b7f34a]/25 hover:brightness-110 transition-all shrink-0"
           >
             <Briefcase className="w-3.5 h-3.5" />
-            <span>Hire Me</span>
+            <span className="hidden xs:inline sm:inline">Hire Me</span>
           </motion.button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} id="mobile-menu-toggle"
@@ -119,6 +134,6 @@ export const Navbar: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };

@@ -36,7 +36,7 @@ function MainAppContent() {
 
         {/* Portfolio sections */}
         <main className="relative z-10">
-          <Hero />
+          <Hero ready={!isLoading} />
           <AboutSection />
           <TechStackSection />
           <ServicesSection />

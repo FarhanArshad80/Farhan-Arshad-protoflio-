@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Terminal as TerminalIcon, Maximize2, Minimize2 } from 'lucide-react';
-import { useTheme, THEME_OPTIONS } from '../context/ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 import { PORTFOLIO_DATA } from '../data/portfolio';
+import { useModalBehavior } from '../hooks/useModalBehavior';
 
 export const TerminalView: React.FC = () => {
-  const { terminalOpen, setTerminalOpen, setThemeId } = useTheme();
+  const { terminalOpen, setTerminalOpen } = useTheme();
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<Array<{ command: string; output: React.ReactNode }>>([
     {
@@ -32,10 +33,11 @@ export const TerminalView: React.FC = () => {
   }, [terminalOpen]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [history]);
+    if (terminalOpen) bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [history, terminalOpen]);
 
-  if (!terminalOpen) return null;
+  const close = useCallback(() => setTerminalOpen(false), [setTerminalOpen]);
+  useModalBehavior(terminalOpen, close);
 
   const handleCommand = (e: React.FormEvent) => {
     e.preventDefault();
@@ -144,77 +146,84 @@ export const TerminalView: React.FC = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setTerminalOpen(false)}
-          className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
-        />
+      {terminalOpen && (
+        <div key="terminal" className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={close}
+            className="modal-scrim fixed inset-0 backdrop-blur-md"
+          />
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className={`relative w-full ${
-            maximized ? 'h-[95vh] max-w-[98vw]' : 'h-[500px] max-w-3xl'
-          } rounded-2xl bg-slate-950 border border-emerald-500/40 shadow-2xl z-10 flex flex-col font-mono text-xs overflow-hidden`}
-        >
-          {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-800">
-            <div className="flex items-center gap-2">
-              <TerminalIcon className="w-4 h-4 text-emerald-400 animate-pulse" />
-              <span className="text-slate-200 font-bold">farhan@portfolio-cli:~</span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setMaximized(!maximized)}
-                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
-                title="Toggle Maximize"
-              >
-                {maximized ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-              </button>
-              <button
-                onClick={() => setTerminalOpen(false)}
-                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
-                title="Close CLI"
-              >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Buffer Logs */}
-          <div className="p-4 flex-1 overflow-y-auto space-y-3 bg-black/90">
-            {history.map((item, idx) => (
-              <div key={idx} className="space-y-1">
-                <div className="flex items-center gap-2 text-slate-400">
-                  <span className="text-emerald-400">guest@farhanarshad:~$</span>
-                  <span className="text-white font-bold">{item.command}</span>
-                </div>
-                <div className="pl-4">{item.output}</div>
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Interactive terminal"
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+            className={`relative w-full ${
+              maximized ? 'h-[95vh] max-w-[98vw]' : 'h-[500px] max-w-3xl'
+            } rounded-2xl bg-slate-950 border border-emerald-500/40 shadow-2xl z-10 flex flex-col font-mono text-xs overflow-hidden`}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-800">
+              <div className="flex items-center gap-2">
+                <TerminalIcon className="w-4 h-4 text-emerald-400 animate-pulse" />
+                <span className="text-slate-200 font-bold">farhan@portfolio-cli:~</span>
               </div>
-            ))}
-            <div ref={bottomRef} />
-          </div>
 
-          {/* Input Line */}
-          <form onSubmit={handleCommand} className="flex items-center gap-2 px-4 py-3 bg-slate-900 border-t border-slate-800">
-            <span className="text-emerald-400 font-bold shrink-0">guest@farhanarshad:~$</span>
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Type command ('help' for list)..."
-              className="flex-1 bg-transparent text-white focus:outline-none placeholder:text-slate-600 font-mono"
-            />
-          </form>
-        </motion.div>
-      </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setMaximized(!maximized)}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                  title="Toggle Maximize"
+                >
+                  {maximized ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                </button>
+                <button
+                  onClick={close}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                  title="Close CLI"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Buffer Logs */}
+            <div className="p-4 flex-1 overflow-y-auto space-y-3 bg-black/90">
+              {history.map((item, idx) => (
+                <div key={idx} className="space-y-1">
+                  <div className="flex items-center gap-2 text-slate-400">
+                    <span className="text-emerald-400">guest@farhanarshad:~$</span>
+                    <span className="text-white font-bold">{item.command}</span>
+                  </div>
+                  <div className="pl-4">{item.output}</div>
+                </div>
+              ))}
+              <div ref={bottomRef} />
+            </div>
+
+            {/* Input Line */}
+            <form onSubmit={handleCommand} className="flex items-center gap-2 px-4 py-3 bg-slate-900 border-t border-slate-800">
+              <span className="text-emerald-400 font-bold shrink-0">guest@farhanarshad:~$</span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type command ('help' for list)..."
+                className="flex-1 bg-transparent text-white focus:outline-none placeholder:text-slate-600 font-mono"
+              />
+            </form>
+          </motion.div>
+        </div>
+      )}
     </AnimatePresence>
   );
 };

@@ -2,35 +2,36 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Mail, MapPin, CheckCircle, Github, Linkedin } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolio';
-import { useTheme } from '../context/ThemeContext';
+import { SectionHeading } from './motion/SectionHeading';
+import { SpotlightCard } from './motion/SpotlightCard';
 
 export const AboutSection: React.FC = () => {
-  const { currentTheme } = useTheme();
 
   return (
     <section id="about" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="flex items-center justify-center gap-3">
-            <div className="h-px w-8 bg-[#f5f0e6]/15" />
-            <span className="text-xs font-mono text-[#5a5650] tracking-widest uppercase">Background &amp; Experience</span>
-            <div className="h-px w-8 bg-[#f5f0e6]/15" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#f5f0e6]">
-            About <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>me</span>
-          </h2>
-          <p className="text-[#8a8680] text-base sm:text-lg">
-            Full-Stack Developer crafting fast MERN web apps, scalable APIs, and clean user experiences.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="Background &amp; Experience"
+          title="About"
+          highlight="me"
+          subtitle="Full-Stack Developer crafting fast MERN web apps, scalable APIs, and clean user experiences."
+          className="mb-16"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="lg:col-span-5">
-            <div className="relative p-8 rounded-3xl bg-[#161616] border border-[#f5f0e6]/[0.07] shadow-2xl space-y-6 overflow-hidden group hover:border-[#b7f34a]/30 transition-all">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="lg:col-span-5 min-w-0">
+            <SpotlightCard
+              className="p-8 rounded-3xl bg-[#161616] border border-[#f5f0e6]/[0.07] shadow-2xl hover:border-[#b7f34a]/30 transition-all"
+              contentClassName="space-y-6"
+            >
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-[#b7f34a] text-[#0d0d0d] font-extrabold text-2xl flex items-center justify-center shadow-xl shadow-[#b7f34a]/20">
+                <motion.div
+                  whileHover={{ rotate: -6, scale: 1.05 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 14 }}
+                  className="w-16 h-16 rounded-2xl bg-[#b7f34a] text-[#0d0d0d] font-extrabold text-2xl flex items-center justify-center shadow-xl shadow-[#b7f34a]/20"
+                >
                   FA
-                </div>
+                </motion.div>
                 <div>
                   <h3 className="text-xl font-bold text-[#f5f0e6]">{PORTFOLIO_DATA.profile.name}</h3>
                   <p className="text-xs font-mono text-[#b7f34a]">{PORTFOLIO_DATA.profile.title}</p>
@@ -38,27 +39,27 @@ export const AboutSection: React.FC = () => {
               </div>
 
               <div className="space-y-3 pt-4 border-t border-[#f5f0e6]/[0.07] font-mono text-xs">
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8]">
+                <div className="flex min-w-0 items-center gap-3 p-3 rounded-xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8] transition-all duration-300 hover:border-[#b7f34a]/25 hover:translate-x-1">
                   <Mail className="w-4 h-4 text-[#b7f34a] shrink-0" />
-                  <a href={`mailto:${PORTFOLIO_DATA.profile.email}`} className="truncate hover:text-[#b7f34a] transition-colors">{PORTFOLIO_DATA.profile.email}</a>
+                  <a href={`mailto:${PORTFOLIO_DATA.profile.email}`} className="min-w-0 truncate hover:text-[#b7f34a] transition-colors">{PORTFOLIO_DATA.profile.email}</a>
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8]">
+                <div className="flex min-w-0 items-center gap-3 p-3 rounded-xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8] transition-all duration-300 hover:border-[#b7f34a]/25 hover:translate-x-1">
                   <MapPin className="w-4 h-4 text-[#b7f34a]/70 shrink-0" />
                   <span>{PORTFOLIO_DATA.profile.location}</span>
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8]">
+                <div className="flex min-w-0 items-center gap-3 p-3 rounded-xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8] transition-all duration-300 hover:border-[#b7f34a]/25 hover:translate-x-1">
                   <Linkedin className="w-4 h-4 text-blue-400 shrink-0" />
-                  <a href="https://www.linkedin.com/in/farhan-arshad-aa5991370/" target="_blank" rel="noreferrer" className="truncate hover:text-blue-400 transition-colors">linkedin.com/in/farhan-arshad</a>
+                  <a href="https://www.linkedin.com/in/farhan-arshad-aa5991370/" target="_blank" rel="noreferrer" className="min-w-0 truncate hover:text-blue-400 transition-colors">linkedin.com/in/farhan-arshad</a>
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8]">
+                <div className="flex min-w-0 items-center gap-3 p-3 rounded-xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8] transition-all duration-300 hover:border-[#b7f34a]/25 hover:translate-x-1">
                   <Github className="w-4 h-4 text-[#c8c3b8] shrink-0" />
-                  <a href="https://github.com/FarhanArshad80" target="_blank" rel="noreferrer" className="truncate hover:text-[#f5f0e6] transition-colors">github.com/FarhanArshad80</a>
+                  <a href="https://github.com/FarhanArshad80" target="_blank" rel="noreferrer" className="min-w-0 truncate hover:text-[#f5f0e6] transition-colors">github.com/FarhanArshad80</a>
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="lg:col-span-7 space-y-6">
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="lg:col-span-7 min-w-0 space-y-6">
             <div className="space-y-4 text-[#a8a39a] leading-relaxed text-sm sm:text-base">
               <p>{PORTFOLIO_DATA.profile.bio}</p>
               <p>{PORTFOLIO_DATA.profile.bioSecondary}</p>

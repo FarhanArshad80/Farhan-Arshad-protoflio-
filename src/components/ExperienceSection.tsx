@@ -1,26 +1,29 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useSpring, useReducedMotion } from 'motion/react';
 import { Building2, Calendar, MapPin, CheckCircle2 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolio';
 import { useTheme } from '../context/ThemeContext';
+import { SectionHeading } from './motion/SectionHeading';
 
 export const ExperienceSection: React.FC = () => {
   const { currentTheme } = useTheme();
+  const reduceMotion = useReducedMotion();
+  const timelineRef = useRef<HTMLDivElement>(null);
+  // Track the timeline's own travel through the viewport so the accent line
+  // draws itself downward at exactly the reader's pace.
+  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ['start 80%', 'end 65%'] });
+  const lineProgress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
 
   return (
     <section id="experience" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="flex items-center justify-center gap-3">
-            <div className="h-px w-8 bg-[#f5f0e6]/15" />
-            <span className="text-xs font-mono text-[#5a5650] tracking-widest uppercase">Career History</span>
-            <div className="h-px w-8 bg-[#f5f0e6]/15" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#f5f0e6]">
-            Work <span className={`bg-gradient-to-r ${currentTheme.gradientClass} bg-clip-text text-transparent`}>Experience & Track Record</span>
-          </h2>
-          <p className="text-[#8a8680] text-base sm:text-lg">Proven track record of building performant web applications, designing scalable APIs, and delivering reliable software solutions.</p>
-        </div>
+        <SectionHeading
+          eyebrow="Career History"
+          title="Work"
+          highlight="Experience &amp; Track Record"
+          subtitle="Proven track record of building performant web applications, designing scalable APIs, and delivering reliable software solutions."
+          className="mb-16"
+        />
 
         <div className="max-w-4xl mx-auto">
           <h3 className="text-xl font-bold text-[#f5f0e6] font-mono flex items-center gap-2 mb-8">
@@ -28,12 +31,31 @@ export const ExperienceSection: React.FC = () => {
             Professional Career Journey
           </h3>
 
-          <div className="relative border-l-2 border-[#f5f0e6]/10 ml-4 pl-6 space-y-8">
+          <div ref={timelineRef} className="relative ml-4 pl-6 space-y-8">
+            <div aria-hidden className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#f5f0e6]/10 rounded-full" />
+            <motion.div
+              aria-hidden
+              className="absolute left-0 top-0 bottom-0 w-0.5 origin-top rounded-full"
+              style={{
+                scaleY: reduceMotion ? 1 : lineProgress,
+                backgroundImage: `linear-gradient(to bottom, ${currentTheme.accentHex}, ${currentTheme.accentHex}b3, ${currentTheme.accentHex}1a)`,
+              }}
+            />
             {PORTFOLIO_DATA.experiences.map((exp, idx) => (
               <motion.div key={exp.id} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.45, delay: idx * 0.1, ease: 'easeOut' }} className="relative group"
               >
-                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-[#0d0d0d] border-2 border-[#b7f34a] shadow-md shadow-[#b7f34a]/20 group-hover:scale-125 transition-transform" />
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true, margin: '-25% 0px -25% 0px' }}
+                  transition={{ type: 'spring', stiffness: 420, damping: 18 }}
+                  className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-[#0d0d0d] border-2 border-[#b7f34a] shadow-md shadow-[#b7f34a]/20 group-hover:scale-125 transition-transform"
+                >
+                  {idx === 0 && (
+                    <span aria-hidden className="absolute inset-0 rounded-full border-2 border-[#b7f34a] animate-ping opacity-60" />
+                  )}
+                </motion.div>
                 <div className="p-6 rounded-3xl bg-[#161616] border border-[#f5f0e6]/[0.07] hover:border-[#b7f34a]/20 transition-colors">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#f5f0e6]/[0.07]">
                     <div>
@@ -53,10 +75,15 @@ export const ExperienceSection: React.FC = () => {
                   <div className="mt-4 space-y-2">
                     <div className="text-xs font-mono font-semibold text-[#5a5650]">KEY IMPACT & DELIVERABLES:</div>
                     {exp.highlights.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-[#c8c3b8] leading-normal">
+                      <motion.div key={i}
+                        initial={{ opacity: 0, x: -8 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: '-40px' }}
+                        transition={{ duration: 0.35, delay: 0.1 + i * 0.07 }}
+                        className="flex items-start gap-2 text-xs text-[#c8c3b8] leading-normal">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#b7f34a] shrink-0 mt-0.5" />
                         <span>{item}</span>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-[#f5f0e6]/[0.07]">
