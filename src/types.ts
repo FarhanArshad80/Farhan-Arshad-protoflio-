@@ -32,7 +32,8 @@ export interface Project {
   keyFeatures: string[];
   techStack: string[];
   metrics: { label: string; value: string }[];
-  liveUrl?: string;
+  imageUrl?: string;
+  imageAlt?: string;
   githubUrl?: string;
   featured: boolean;
   architectureOverview?: string;

@@ -5,7 +5,7 @@ export const PORTFOLIO_DATA = {
     name: 'Farhan Arshad',
     title: 'Full-Stack MERN Engineer',
     tagline: 'Building high-performance MERN web apps and backend microservices that scale your business revenue.',
-    bio: 'I am a Full-Stack Web Developer focused on building fast, maintainable, and production-ready web applications. My core expertise spans React, Node.js, Express, and MongoDB, along with building scalable microservices using NestJS.',
+    bio: 'I am a Full-Stack Engineer focused on building fast, maintainable, and production-ready web applications. My core expertise spans React, Node.js, Express, and MongoDB, along with building scalable microservices using NestJS.',
     bioSecondary: 'I bridge the gap between clean frontend interfaces and solid backend architecture. Whether it\'s building a complete web application from scratch, optimizing database performance, or integrating third-party APIs, I deliver reliable code that scales smoothly as your business grows.',
     location: 'Lahore, Pakistan (Available Remote Worldwide)',
     email: 'farhanarshad15926@gmail.com',
@@ -35,144 +35,119 @@ export const PORTFOLIO_DATA = {
 
   projects: [
     {
-      id: 'nexus-mern-ecommerce',
-      title: 'MERN Stack Omnichannel E-Commerce Platform',
-      subtitle: 'Full-featured online store with React, Node.js, Express, MongoDB, and Stripe',
+      id: 'spend-wise',
+      title: 'SpendWise — Personal Expense Tracker',
+      subtitle: 'Full-stack finance app with budgets, recurring transactions, and spending analytics',
       category: 'fullstack',
-      description: 'A comprehensive full-stack e-commerce engine with real-time inventory deduction, guest & user checkout, JWT authentication, Stripe payment processing, and an admin analytics portal.',
-      longDescription: 'Built with React 19 and Tailwind CSS on the frontend and Express + MongoDB Mongoose on the backend. Includes advanced search filters, shopping cart persistence, invoice generation, and responsive mobile design.',
+      description: 'A personal finance platform where users track daily income and expenses, manage monthly and per-category budgets, automate recurring transactions, and receive configurable budget alerts.',
+      longDescription: 'Built as a TypeScript pnpm monorepo with a React + Vite frontend, an Express 5 API server, and PostgreSQL via Drizzle ORM. API contracts live in a single OpenAPI spec that generates typed hooks and Zod schemas with Orval, so the client and server never drift apart. Authentication is handled by Clerk with cookie-based sessions.',
       keyFeatures: [
-        'Secure JWT authentication & role-based admin controls',
-        'Stripe payment gateway integration with webhooks',
-        'Optimized MongoDB aggregation pipelines for fast search & category filtering',
-        'Order tracking system with automated status updates',
-        'Responsive dashboard with real-time sales visualizer'
+        'Dashboard with budget progress, income/expense summary, and spending charts',
+        'Full transaction CRUD with search and filters by type, category, date range, and amount',
+        'Overall monthly budget plus per-category budgets with live progress bars',
+        'Monthly recurring transactions with manual trigger and active/inactive toggle',
+        'Configurable budget alerts computed at query time from real transaction data',
+        'Type-safe API layer generated from an OpenAPI spec via Orval and Zod'
       ],
-      techStack: ['React 19', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS', 'Stripe API'],
+      techStack: ['TypeScript', 'React', 'Vite', 'Express 5', 'PostgreSQL', 'Drizzle ORM', 'Tailwind CSS', 'Recharts', 'Zod', 'Clerk'],
       metrics: [
-        { label: 'Page Load Speed', value: '0.8s' },
-        { label: 'API Latency', value: '< 35ms' },
-        { label: 'Test Coverage', value: '92%' }
+        { label: 'Workspace Packages', value: '6' },
+        { label: 'App Pages', value: '8' },
+        { label: 'Type Safety', value: '100%' }
       ],
-      liveUrl: 'https://nexus-store.example.com',
-      githubUrl: 'https://github.com/farhanarshad-dev/mern-ecommerce-suite',
+      imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=70',
+      imageAlt: 'Budget paperwork, receipts, and a calculator laid out on a desk',
+      githubUrl: 'https://github.com/FarhanArshad80/Spend-Wise',
       featured: true,
-      architectureOverview: 'React frontend consumes Express REST endpoints protected by JWT middleware with MongoDB Atlas cloud database.',
-      codeSnippet: {
-        filename: 'productController.ts',
-        language: 'typescript',
-        code: `import { Request, Response } from 'express';
-import { Product } from '../models/Product';
-
-export const getFilteredProducts = async (req: Request, res: Response) => {
-  const { category, search, minPrice, maxPrice, page = 1, limit = 12 } = req.query;
-  const query: any = {};
-
-  if (category) query.category = category;
-  if (search) query.name = { $regex: search, $options: 'i' };
-  if (minPrice || maxPrice) query.price = { $gte: Number(minPrice) || 0, $lte: Number(maxPrice) || 10000 };
-
-  const products = await Product.find(query)
-    .skip((Number(page) - 1) * Number(limit))
-    .limit(Number(limit))
-    .sort({ createdAt: -1 });
-
-  const total = await Product.countDocuments(query);
-  res.json({ success: true, data: products, total, page: Number(page) });
-};`
-      }
+      architectureOverview: 'pnpm workspace monorepo: React + Vite client and Express 5 API server share an OpenAPI spec and Drizzle schema, backed by PostgreSQL with Clerk-managed auth.'
     },
     {
-      id: 'taskflow-nestjs-saas',
-      title: 'TaskFlow NestJS Project & Sprint Manager',
-      subtitle: 'Enterprise project workspace powered by NestJS microservices and React',
-      category: 'saas',
-      description: 'A multi-tenant project management SaaS with Kanban boards, sprint burndown charts, team permissions, and real-time activity feeds via WebSockets.',
-      longDescription: 'Engineered using NestJS for strict dependency injection and modular design, paired with MongoDB for dynamic document structures and React for smooth drag-and-drop board interactions.',
+      id: 'task-manager',
+      title: 'Task Manager — Productivity Workspace',
+      subtitle: 'Multi-page React task app with dashboard, calendar, analytics, and progress views',
+      category: 'fullstack',
+      description: 'A React task management application for creating, organizing, and tracking work across a routed workspace with a dashboard, calendar planner, analytics, and progress tracking.',
+      longDescription: 'Built with React 19 and React Router for client-side routing across dedicated pages, with global state handled through React Context. Styled with Tailwind CSS v4 and Lucide icons for a clean, responsive interface that works from mobile to desktop.',
       keyFeatures: [
-        'NestJS modular architecture with Custom Decorators & Guards',
-        'Drag-and-drop Kanban task boards with custom status columns',
-        'Real-time team notification system using Socket.io',
-        'Detailed PDF report exporter and CSV project data dump'
+        'Task CRUD with add, edit, delete, and completion tracking',
+        'Routed multi-page workspace: Dashboard, Tasks, Calendar, Analytics, Progress',
+        'Calendar view for scheduling and planning tasks by date',
+        'Analytics and progress pages that visualize completion trends',
+        'Shared state via React Context with a reusable UI component layer',
+        'Fully responsive Tailwind CSS v4 layout with Lucide icon system'
       ],
-      techStack: ['NestJS', 'React', 'MongoDB', 'TypeScript', 'Socket.io', 'Tailwind CSS'],
+      techStack: ['React 19', 'React Router', 'JavaScript', 'Vite', 'Tailwind CSS v4', 'Context API', 'Lucide React'],
       metrics: [
-        { label: 'Concurrent Users', value: '5k+' },
-        { label: 'System Uptime', value: '99.9%' }
+        { label: 'App Pages', value: '6' },
+        { label: 'Bundle Tool', value: 'Vite' },
+        { label: 'Responsive', value: '100%' }
       ],
-      liveUrl: 'https://taskflow.example.com',
-      githubUrl: 'https://github.com/farhanarshad-dev/taskflow-nestjs-saas',
+      imageUrl: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=1200&q=70',
+      imageAlt: 'Hand ticking off items on a handwritten checklist in a notebook',
+      githubUrl: 'https://github.com/FarhanArshad80/Task-Manger',
       featured: true,
-      architectureOverview: 'NestJS REST & Gateway services with MongoDB Mongoose schemas, Guard-protected endpoints, and Vite React frontend.',
-      codeSnippet: {
-        filename: 'tasks.service.ts',
-        language: 'typescript',
-        code: `@Injectable()
-export class TasksService {
-  constructor(@InjectModel(Task.name) private taskModel: Model<TaskDocument>) {}
-
-  async updateTaskStatus(id: string, status: TaskStatus, userId: string): Promise<Task> {
-    const task = await this.taskModel.findByIdAndUpdate(
-      id,
-      { status, lastModifiedBy: userId },
-      { new: true }
-    );
-    if (!task) throw new NotFoundException('Task not found');
-    return task;
-  }
-}`
-      }
+      architectureOverview: 'React 19 SPA with React Router page routing, Context API state, and a layered components structure split into layout, UI, and data modules.'
     },
     {
-      id: 'realtime-chat-connect',
-      title: 'Real-Time Team Workspace & Chat Hub',
-      subtitle: 'Instant messaging app with room channels, file attachments, and user presence',
+      id: 'habit-tracker',
+      title: 'Constellation — Habit Tracker',
+      subtitle: 'Streak tracker where every completed ritual lights up a point in a 14-day trail',
       category: 'fullstack',
-      description: 'A full stack real-time communication platform built with React, Express, Node.js, and Socket.io featuring direct messages, group rooms, and unread badges.',
-      longDescription: 'Created to demonstrate low-latency WebSocket communication. Features typing indicators, online/offline status badges, persistent chat histories in MongoDB, and media uploads.',
+      description: 'A habit tracking app that turns streaks into a visible constellation: each completed ritual lights up a star, and a connected trail shows your current run across the last 14 days.',
+      longDescription: 'Built with React 19 and Vite, fully client-side with localStorage persistence so there is no backend or account required. Includes a Pomodoro-style focus timer that can automatically mark a linked habit complete when a session finishes, plus a stats dashboard for completion rates and streaks.',
       keyFeatures: [
-        'Instant Socket.io event triggers for instant message delivery',
-        'MongoDB message storage with cursor pagination',
-        'File attachment preview with drag-and-drop upload zone',
-        'Dark & light mode themes with clean glassmorphism UI'
+        'Add and delete habits with custom name, icon, color, and weekly goal',
+        'One-tap check-in for today plus back-fill toggling for any of the last 14 days',
+        'Constellation streak trail rendering current and best streaks per habit',
+        'Stats dashboard: completion rate, best streak, active rituals, all-time check-ins',
+        'Pomodoro focus timer with 5/15/25/45 minute presets linked to habits',
+        'Offline-first localStorage persistence with no backend or sign-up needed'
       ],
-      techStack: ['React', 'Express.js', 'Node.js', 'MongoDB', 'Socket.io', 'Tailwind CSS'],
+      techStack: ['React 19', 'JavaScript', 'Vite', 'Tailwind CSS', 'localStorage', 'Lucide React'],
       metrics: [
-        { label: 'Delivery Latency', value: '< 15ms' },
-        { label: 'Max Active Rooms', value: '1,000+' }
+        { label: 'Streak Window', value: '14 days' },
+        { label: 'Timer Presets', value: '4' },
+        { label: 'Backend Needed', value: 'None' }
       ],
-      liveUrl: 'https://chathub.example.com',
-      githubUrl: 'https://github.com/farhanarshad-dev/realtime-chat-mern',
-      featured: true
+      imageUrl: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1200&q=70',
+      imageAlt: 'Monthly planner open to a goals page beside a cup of coffee',
+      githubUrl: 'https://github.com/FarhanArshad80/Habit-Tracker',
+      featured: true,
+      architectureOverview: 'Client-only React 19 SPA built with Vite; all habit and streak state is persisted to browser localStorage with accessible, reduced-motion-aware animations.'
     },
     {
-      id: 'rest-api-boilerplate',
-      title: 'Production-Ready Express & NestJS API Boilerplate',
-      subtitle: 'Secure, tested, and pre-configured REST API engine with authentication',
-      category: 'fullstack',
-      description: 'An open-source production starter kit for Node.js backends featuring JWT auth, rate limiting, Winston logging, Swagger API documentation, and Docker Compose.',
-      longDescription: 'Designed to streamline backend setup for developers. Built with clean code practices, Jest unit tests, input validation using Zod/Joi, and Docker deployment configurations.',
+      id: 'ai-image-generator',
+      title: 'AI Image Generator',
+      subtitle: 'Text-to-image studio with model, aspect ratio, and batch count controls',
+      category: 'ai',
+      description: 'A text-to-image generation tool that turns written prompts into AI artwork, with selectable models, aspect ratios, batch counts, and a built-in library of example prompts.',
+      longDescription: 'Built in vanilla JavaScript against the Hugging Face inference API, with the API key supplied through environment variables rather than hardcoded. The interface includes a responsive gallery grid, a random example-prompt generator, and a light/dark theme that respects the system preference and persists the user choice.',
       keyFeatures: [
-        'Complete auth suite: Signup, Login, Password Reset, Email Verification',
-        'Swagger / OpenAPI interactive UI documentation',
-        'Automated CI/CD workflows with GitHub Actions',
-        'Jest integration tests with 90%+ branch coverage'
+        'Prompt-to-image generation through the Hugging Face inference API',
+        'Selectable AI model, image count, and aspect ratio per generation',
+        'Responsive gallery grid with per-image loading states',
+        'Ten built-in example prompts with a surprise-me randomizer',
+        'Dark and light theme with system-preference detection and localStorage persistence',
+        'API key loaded from environment variables, never committed to the repo'
       ],
-      techStack: ['Node.js', 'Express.js', 'NestJS', 'MongoDB', 'Docker', 'Jest'],
+      techStack: ['JavaScript', 'HTML5', 'CSS3', 'Hugging Face API', 'Vite', 'Font Awesome'],
       metrics: [
-        { label: 'GitHub Stars', value: '450+' },
-        { label: 'Downloads', value: '10k+' }
+        { label: 'Example Prompts', value: '10' },
+        { label: 'Aspect Ratios', value: '3' },
+        { label: 'Dependencies', value: '0' }
       ],
-      liveUrl: 'https://api-docs.example.com',
-      githubUrl: 'https://github.com/farhanarshad-dev/node-express-backend-boilerplate',
-      featured: false
+      imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=70',
+      imageAlt: 'The letters AI rendered in blue over a field of glowing nodes',
+      githubUrl: 'https://github.com/FarhanArshad80/AI-Image-Generator',
+      featured: false,
+      architectureOverview: 'Zero-dependency vanilla JS front end that posts prompts to the Hugging Face inference endpoint and renders returned images into a responsive gallery grid.'
     }
   ] as Project[],
 
   experiences: [
     {
       id: 'exp-1',
-      role: 'Full-Stack Web Developer',
+      role: 'Full-Stack Engineer',
       company: 'Independent Freelancer',
       location: 'Remote',
       period: '2025 – Present',
@@ -188,8 +163,8 @@ export class TasksService {
       id: 'exp-2',
       role: 'Software Engineer',
       company: 'TechTide Corporate',
-      location: 'Remote',
-      period: '2026 – Present',
+      location: 'Onsite',
+      period: '2026',
       description: 'Engineering scalable web application modules, RESTful backend APIs, and collaborative frontend architectures.',
       highlights: [
         'Developed production-ready React components and integrated complex backend microservices.',
@@ -202,7 +177,7 @@ export class TasksService {
       id: 'exp-3',
       role: 'Associate Software Engineer',
       company: 'Qalam Software / Engineering Program',
-      location: 'Remote',
+      location: 'Onsite',
       period: '2025',
       description: 'Focused on modern web application architecture, database management, and clean code principles.',
       highlights: [

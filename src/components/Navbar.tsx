@@ -27,10 +27,23 @@ export const Navbar: React.FC = () => {
       frame = 0;
       setScrolled(window.scrollY > 20);
       const sections = NAV_LINKS.map((l) => l.href.substring(1));
-      for (const section of [...sections].reverse()) {
-        const el = document.getElementById(section);
-        if (el && el.getBoundingClientRect().top <= 220) { setActiveSection(section); break; }
+
+      // At the very bottom the last section may never cross the offset line,
+      // so pin it there rather than leaving an earlier one highlighted.
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        setActiveSection(sections[sections.length - 1]);
+        return;
       }
+
+      // Default to the first link. Up in the hero nothing crosses the line, and
+      // without a default the highlight stays stuck on whatever was last
+      // active — so scrolling back to the top would still read "Skills".
+      let current = sections[0];
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el && el.getBoundingClientRect().top <= 220) current = section;
+      }
+      setActiveSection(current);
     };
     const handleScroll = () => {
       if (frame) return;
@@ -51,7 +64,13 @@ export const Navbar: React.FC = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled ? 'bg-[#0d0d0d]/95 border-b border-[#f5f0e6]/[0.07] py-3 shadow-xl backdrop-blur-2xl' : 'bg-transparent py-5'
+        // The unscrolled state keeps a transparent 1px border rather than no
+        // border at all: dropping the border class lets the colour fall back to
+        // currentColor (near-black) while the width is still animating down,
+        // which flashes a dark hairline across the header on the way back up.
+        scrolled
+          ? 'bg-[#0d0d0d]/95 border-b border-[#f5f0e6]/[0.07] py-3 shadow-xl backdrop-blur-2xl'
+          : 'bg-transparent border-b border-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
@@ -76,8 +95,8 @@ export const Navbar: React.FC = () => {
             return (
               <a
                 key={link.href} href={link.href} id={`nav-link-${link.href.substring(1)}`}
-                className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors ${
-                  isActive ? 'text-[#0d0d0d]' : 'text-[#8a8680] hover:text-[#f5f0e6] link-underline'
+                className={`relative px-4 py-1.5 text-xs font-semibold rounded-full transition-colors duration-200 focus:outline-none ${
+                  isActive ? 'text-[#0d0d0d]' : 'text-[#8a8680] hover:text-[#f5f0e6] nav-pill'
                 }`}
               >
                 {isActive && (

@@ -25,7 +25,6 @@ export const ServicesSection: React.FC = () => {
     <section id="services" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="What I Offer"
           title="Services &amp;"
           highlight="Expertise"
           subtitle="End-to-end software solutions tailored to your business — from ideation and design to deployment and ongoing maintenance."

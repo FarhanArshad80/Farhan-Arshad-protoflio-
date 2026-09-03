@@ -18,7 +18,6 @@ export const ExperienceSection: React.FC = () => {
     <section id="experience" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Career History"
           title="Work"
           highlight="Experience &amp; Track Record"
           subtitle="Proven track record of building performant web applications, designing scalable APIs, and delivering reliable software solutions."

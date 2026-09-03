@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Github, Sparkles, CheckCircle2, FileCode, Check, X } from 'lucide-react';
+import { Github, Sparkles, CheckCircle2, FileCode, Check, X } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolio';
 import { Project } from '../types';
 import { useTheme } from '../context/ThemeContext';
@@ -27,10 +27,9 @@ export const ProjectsSection: React.FC = () => {
     <section id="projects" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Featured Work"
           title="Production"
           highlight="Projects &amp; Code"
-          subtitle="A showcase of real-world MERN stack platforms, NestJS API microservices, e-commerce suites, and real-time workspaces engineered by Farhan Arshad."
+          subtitle="A showcase of real-world React and full-stack applications built by Farhan Arshad — every project open source, with the complete code on GitHub."
           className="mb-16"
         />
 
@@ -45,17 +44,29 @@ export const ProjectsSection: React.FC = () => {
               }}
               className="group relative flex flex-col rounded-3xl overflow-hidden border shadow-xl cursor-pointer bg-[#161616] border-[#f5f0e6]/[0.07] hover:border-[#b7f34a]/30 hover:shadow-[#b7f34a]/10 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#b7f34a]/60"
             >
-              <div className={`relative h-28 bg-gradient-to-br ${currentTheme.gradientClass} flex items-center justify-center overflow-hidden`}>
+              <div className={`relative h-36 bg-gradient-to-br ${currentTheme.gradientClass} flex items-center justify-center overflow-hidden`}>
+                {project.imageUrl ? (
+                  <img
+                    src={project.imageUrl}
+                    alt={project.imageAlt ?? ''}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <FileCode className="w-9 h-9 text-[#0d0d0d]/30 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6" />
+                )}
+                {/* Darkens the photo so the badges stay legible against any image. */}
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/5 to-black/20" />
                 <div className="card-scrim absolute inset-0" />
                 {/* Light sweeps across the header once on hover. */}
                 <div aria-hidden className="card-sheen absolute inset-0" />
                 {project.featured && (
-                  <span className="absolute top-3 right-3 flex items-center gap-1 text-[10px] font-mono text-[#0d0d0d] bg-[#b7f34a]/80 border border-[#b7f34a]/40 px-2 py-0.5 rounded-full">
+                  <span className="absolute top-3 right-3 flex items-center gap-1 text-[10px] font-mono text-[#0d0d0d] bg-[#b7f34a]/90 border border-[#b7f34a]/40 px-2 py-0.5 rounded-full">
                     <Sparkles className="w-3 h-3" /> Featured
                   </span>
                 )}
-                <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#0d0d0d]/50 border border-[#f5f0e6]/20 font-mono text-[10px] text-[#f5f0e6] uppercase tracking-wide">{project.category}</span>
-                <FileCode className="w-9 h-9 text-[#0d0d0d]/30 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6" />
+                <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-[#0d0d0d]/70 border border-[#f5f0e6]/20 font-mono text-[10px] text-[#f5f0e6] uppercase tracking-wide backdrop-blur-sm">{project.category}</span>
               </div>
 
               <div className="flex flex-col flex-1 p-4 space-y-3">
@@ -70,16 +81,12 @@ export const ProjectsSection: React.FC = () => {
                   ))}
                 </div>
                 <div className="flex items-center gap-2 pt-2 border-t border-[#f5f0e6]/[0.07]">
-                  {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}
-                      className="flex-1 text-center px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-[#0d0d0d] bg-[#b7f34a] shadow-sm"
-                    >Live →</a>
-                  )}
                   {project.githubUrl && (
                     <a href={project.githubUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}
-                      className="p-1.5 rounded-lg bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#8a8680] hover:text-[#f5f0e6] transition-colors" title="GitHub"
+                      className="flex-1 flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-[#0d0d0d] bg-[#b7f34a] shadow-sm hover:brightness-110 transition-all"
+                      title="View source on GitHub"
                     >
-                      <Github className="w-3.5 h-3.5" />
+                      <Github className="w-3.5 h-3.5" /> GitHub Code
                     </a>
                   )}
                   <button onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
@@ -115,6 +122,18 @@ export const ProjectsSection: React.FC = () => {
                 transition={{ type: 'spring', stiffness: 260, damping: 26 }}
                 className="relative w-full max-w-3xl my-8 rounded-3xl bg-[#161616] border border-[#f5f0e6]/[0.07] shadow-2xl overflow-hidden max-h-[85vh] flex flex-col"
               >
+                {selectedProject.imageUrl && (
+                  <div className="relative h-44 sm:h-52 shrink-0 overflow-hidden">
+                    <img
+                      src={selectedProject.imageUrl}
+                      alt={selectedProject.imageAlt ?? ''}
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/40" />
+                  </div>
+                )}
+
                 <div className="p-6 bg-[#0d0d0d] border-b border-[#f5f0e6]/[0.07] flex items-center justify-between">
                   <div>
                     <span className="text-xs font-mono text-[#b7f34a] uppercase">{selectedProject.category} PROJECT</span>
@@ -167,14 +186,9 @@ export const ProjectsSection: React.FC = () => {
                 )}
                 <div className="pt-4 border-t border-[#f5f0e6]/[0.07] flex items-center justify-between flex-wrap gap-3">
                   <div className="flex items-center gap-2">
-                    {selectedProject.liveUrl && (
-                      <a href={selectedProject.liveUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-[#0d0d0d] bg-[#b7f34a] font-bold text-xs shadow-md">
-                        <ExternalLink className="w-3.5 h-3.5" />Launch Live App
-                      </a>
-                    )}
                     {selectedProject.githubUrl && (
-                      <a href={selectedProject.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8] font-bold text-xs hover:border-[#f5f0e6]/20 transition-colors">
-                        <Github className="w-3.5 h-3.5" />GitHub Repository
+                      <a href={selectedProject.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-[#0d0d0d] bg-[#b7f34a] font-bold text-xs shadow-md hover:brightness-110 transition-all">
+                        <Github className="w-3.5 h-3.5" />View GitHub Code
                       </a>
                     )}
                   </div>

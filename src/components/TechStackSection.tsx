@@ -20,7 +20,6 @@ export const TechStackSection: React.FC = () => {
     <section id="skills" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Technical Proficiency"
           title="Skills &amp;"
           highlight="Tech Stack"
           subtitle="A specialized toolkit focused on building scalable web apps, robust APIs, and performant user interfaces."

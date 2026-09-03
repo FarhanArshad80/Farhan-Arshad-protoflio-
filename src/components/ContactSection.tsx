@@ -13,7 +13,6 @@ export const ContactSection: React.FC = () => {
     <section id="contact" className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Let's Connect"
           title="Let's"
           highlight="Work Together"
           subtitle="Have a project in mind or want to hire me for full-stack web development? Fill in the enquiry form and I'll get back to you promptly."
@@ -32,9 +31,9 @@ export const ContactSection: React.FC = () => {
               <h3 className="text-xl font-bold text-[#f5f0e6]">Direct Contact</h3>
               <div className="space-y-3.5 text-xs font-mono">
                 <a href={`mailto:${PORTFOLIO_DATA.profile.email}`}
-                  className="flex min-w-0 items-center gap-3 p-3.5 rounded-2xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#b7f34a] hover:border-[#b7f34a]/30 transition-colors group"
+                  className="flex min-w-0 items-center gap-3 p-3.5 rounded-2xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] text-[#c8c3b8] transition-colors group"
                 >
-                  <Mail className="w-4 h-4 group-hover:scale-110 transition-transform shrink-0" />
+                  <Mail className="w-4 h-4 text-[#b7f34a]/60 group-hover:scale-110 transition-transform shrink-0" />
                   <span className="truncate">{PORTFOLIO_DATA.profile.email}</span>
                 </a>
                 <div className="p-3.5 rounded-2xl bg-[#0d0d0d] border border-[#f5f0e6]/[0.07] flex items-center gap-3 text-[#c8c3b8]">

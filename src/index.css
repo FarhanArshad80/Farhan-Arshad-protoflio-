@@ -243,24 +243,27 @@ html[data-theme='minimal-light'] .modal-scrim {
 }
 
 /* Underline that grows out from the centre on hover. */
-.link-underline {
-  position: relative;
-}
-
-.link-underline::after {
+/* Nav links sit inside a pill-shaped bar, so the hover affordance is a soft
+   chip echoing the active tab rather than an underline hanging outside the
+   pill. `currentColor` keeps it right in both themes, and the negative z-index
+   paints it behind the label but above the bar (the bar's backdrop-filter
+   makes it a stacking context, the same reason the active pill works). */
+.nav-pill::before {
   content: '';
   position: absolute;
-  left: 50%;
-  bottom: -2px;
-  height: 1px;
-  width: 0;
+  inset: 0;
+  border-radius: 9999px;
   background: currentColor;
-  transition: width 0.28s ease, left 0.28s ease;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
 }
 
-.link-underline:hover::after {
-  left: 0;
-  width: 100%;
+.nav-pill:hover::before,
+.nav-pill:focus-visible::before {
+  opacity: 0.1;
+  transform: scale(1);
 }
 
 /* Honour the OS setting: strip decorative motion, keep the layout intact. */
@@ -412,4 +415,15 @@ html[data-theme='cyber-neon'] select,
 html[data-theme='cyber-neon'] input,
 html[data-theme='cyber-neon'] textarea {
   color-scheme: light;
+}
+
+/* The custom arrow replaces the OS cursor. Hiding it on <html> alone is not
+   enough: Tailwind's preflight sets `cursor: pointer` on buttons and links,
+   which wins over the inherited value and leaves a native hand showing
+   alongside the custom pointer. Unlayered `!important` outranks preflight.
+   CustomCursor adds this class only on devices that get the custom pointer,
+   so touch users keep their native behaviour. */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
 }

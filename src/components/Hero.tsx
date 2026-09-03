@@ -204,16 +204,6 @@ export const Hero: React.FC<HeroProps> = ({ ready = true }) => {
     <section id="hero" className="relative min-h-svh pt-28 pb-16 flex items-center justify-center overflow-hidden">
       <div className="max-w-7xl 2xl:max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <motion.div initial={{ opacity: 0, x: -30 }} animate={ready ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }} transition={{ duration: 0.7 }} className="hero-copy lg:col-span-5 space-y-6">
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#161616] border border-[#f5f0e6]/[0.07] text-xs font-mono text-[#8a8680]"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#b7f34a]" />
-            <span>{PORTFOLIO_DATA.profile.location}</span>
-          </motion.div>
-
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight min-h-[1.2em]">
             <span className="block text-[#f5f0e6]">Hi, I'm</span>
             <motion.span

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ExternalLink, Github, CheckCircle2, Cpu, Copy, Check, Code, Layers, Zap } from 'lucide-react';
+import { X, Github, CheckCircle2, Cpu, Copy, Check, Code, Layers, Zap } from 'lucide-react';
 import { Project } from '../types';
 import { useTheme } from '../context/ThemeContext';
 
@@ -195,17 +195,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               >
                 <Github className="w-4 h-4" />
                 <span>Source Code</span>
-              </a>
-            )}
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-white font-medium text-xs bg-gradient-to-r ${currentTheme.gradientClass} shadow-md hover:brightness-110 transition-all`}
-              >
-                <ExternalLink className="w-4 h-4" />
-                <span>Live Demo</span>
               </a>
             )}
           </div>
