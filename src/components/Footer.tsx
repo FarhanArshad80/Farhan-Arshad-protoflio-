@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Clock, Briefcase, Mail, Github, Linkedin } from 'lucide-react';
+import { ArrowUp, Clock, Briefcase, Mail, Github, Linkedin, Twitter } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolio';
 import { useTheme } from '../context/ThemeContext';
 import { Marquee } from './motion/Marquee';
@@ -68,6 +68,11 @@ export const Footer: React.FC = () => {
           <a href={PORTFOLIO_DATA.profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-[#c8c3b8] transition-colors" title="LinkedIn">
             <Linkedin className="w-3.5 h-3.5" />
             <span>LinkedIn</span>
+          </a>
+          <span className="text-[#f5f0e6]/10">•</span>
+          <a href={PORTFOLIO_DATA.profile.twitter} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-[#c8c3b8] transition-colors" title="Twitter / X">
+            <Twitter className="w-3.5 h-3.5" />
+            <span>Twitter / X</span>
           </a>
         </div>
 
