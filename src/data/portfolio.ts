@@ -35,31 +35,32 @@ export const PORTFOLIO_DATA = {
 
   projects: [
     {
-      id: 'spend-wise',
-      title: 'SpendWise — Personal Expense Tracker',
-      subtitle: 'Full-stack finance app with budgets, recurring transactions, and spending analytics',
+      id: 'cartly',
+      title: 'Cartly — AI-Powered E-Commerce Platform',
+      subtitle: 'Full MERN storefront with admin dashboard, Stripe checkout, and a Gemini shopping assistant',
       category: 'fullstack',
-      description: 'A personal finance platform where users track daily income and expenses, manage monthly and per-category budgets, automate recurring transactions, and receive configurable budget alerts.',
-      longDescription: 'Built as a TypeScript pnpm monorepo with a React + Vite frontend, an Express 5 API server, and PostgreSQL via Drizzle ORM. API contracts live in a single OpenAPI spec that generates typed hooks and Zod schemas with Orval, so the client and server never drift apart. Authentication is handled by Clerk with cookie-based sessions.',
+      description: 'A production-grade e-commerce platform where shoppers browse a real catalog, manage cart and wishlist, check out through Stripe, and get natural-language buying advice from an AI assistant grounded in live inventory.',
+      longDescription: 'Built as two independently deployable repositories: a React 18 + Vite storefront and a Node.js + Express + MongoDB REST API. The server is the single source of truth for money — the cart is repriced from the Product collection on every read, so no client can influence a price, total, or stock level. Stock decrements exactly once behind a transaction-guarded flag, so a replayed Stripe webhook can never double-decrement. Every request body, query, and param is validated with Zod, and sessions live in HTTP-only cookies rather than localStorage.',
       keyFeatures: [
-        'Dashboard with budget progress, income/expense summary, and spending charts',
-        'Full transaction CRUD with search and filters by type, category, date range, and amount',
-        'Overall monthly budget plus per-category budgets with live progress bars',
-        'Monthly recurring transactions with manual trigger and active/inactive toggle',
-        'Configurable budget alerts computed at query time from real transaction data',
-        'Type-safe API layer generated from an OpenAPI spec via Orval and Zod'
+        'Full catalog with search, filtering, pagination, ratings, and reviews',
+        'Server-priced cart and wishlist with TanStack Query cache seeded from server responses',
+        'Stripe checkout with webhook-driven order fulfillment and idempotent stock reduction',
+        'Gemini-powered AI assistant that advises in prose, grounded in a real catalog slice',
+        'Lazy-loaded admin dashboard with data tables and Recharts analytics',
+        'Cookie-based JWT auth with protected and guest route guards',
+        'Hardened API: Helmet, rate limiting, Mongo sanitization, and Zod validation on every route'
       ],
-      techStack: ['TypeScript', 'React', 'Vite', 'Express 5', 'PostgreSQL', 'Drizzle ORM', 'Tailwind CSS', 'Recharts', 'Zod', 'Clerk'],
+      techStack: ['React 18', 'Vite', 'TanStack Query', 'Tailwind CSS v4', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'Stripe', 'Gemini AI', 'Zod', 'Cloudinary'],
       metrics: [
-        { label: 'Workspace Packages', value: '6' },
-        { label: 'App Pages', value: '8' },
-        { label: 'Type Safety', value: '100%' }
+        { label: 'Repositories', value: '2' },
+        { label: 'Validated Routes', value: '100%' },
+        { label: 'Admin Bundle', value: 'Lazy' }
       ],
-      imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=70',
-      imageAlt: 'Budget paperwork, receipts, and a calculator laid out on a desk',
-      githubUrl: 'https://github.com/FarhanArshad80/Spend-Wise',
+      imageUrl: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=70',
+      imageAlt: 'Online shopping cart and checkout concept on a laptop screen',
+      githubUrl: 'https://github.com/FarhanArshad80/E-commerence',
       featured: true,
-      architectureOverview: 'pnpm workspace monorepo: React + Vite client and Express 5 API server share an OpenAPI spec and Drizzle schema, backed by PostgreSQL with Clerk-managed auth.'
+      architectureOverview: 'Two-repo split deployment: a React + Vite storefront and admin SPA talking REST-only to an Express + MongoDB API, with Stripe webhooks, Cloudinary media, and Gemini advisory grounded in live catalog data.'
     },
     {
       id: 'task-manager',
@@ -161,30 +162,31 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: 'exp-2',
-      role: 'Software Engineer',
-      company: 'TechTide Corporate',
-      location: 'Onsite',
-      period: '2026',
-      description: 'Engineering scalable web application modules, RESTful backend APIs, and collaborative frontend architectures.',
+      role: 'Full Stack Engineer Intern',
+      company: 'TechTide Co.',
+      location: 'Lahore, Pakistan · On-site',
+      period: 'Jul 2026 – Sep 2026 · 3 mos',
+      description: 'Built and maintained full-stack web applications using React, Node.js, Express.js, and MongoDB.',
       highlights: [
-        'Developed production-ready React components and integrated complex backend microservices.',
-        'Optimized API endpoints and streamlined database queries within an agile engineering team.'
+        'Developed REST APIs and integrated frontend and backend systems into working end-to-end features.',
+        'Maintained and extended production web application modules alongside the engineering team.'
       ],
-      skills: ['React', 'Node.js', 'NestJS', 'REST APIs', 'MongoDB'],
-      type: 'full-time'
+      skills: ['React', 'Node.js', 'Express.js', 'MongoDB', 'REST APIs', 'CSS'],
+      type: 'internship'
     },
     {
       id: 'exp-3',
-      role: 'Associate Software Engineer',
-      company: 'Qalam Software / Engineering Program',
-      location: 'Onsite',
-      period: '2025',
-      description: 'Focused on modern web application architecture, database management, and clean code principles.',
+      role: 'Software Engineer Intern',
+      company: 'Qalam Training Programs',
+      location: 'Lahore, Pakistan · On-site',
+      period: 'Aug 2025 – Nov 2025 · 4 mos',
+      description: 'Developed and enhanced interactive, user-focused web application interfaces using React, HTML5, and CSS3.',
       highlights: [
-        'Built full-stack web modules using JavaScript toolchains, REST APIs, and structured database designs.'
+        'Built responsive, component-driven UI screens with React and modern CSS.',
+        'Improved existing interfaces for usability and cross-device consistency.'
       ],
-      skills: ['JavaScript', 'React', 'REST APIs', 'MongoDB'],
-      type: 'full-time'
+      skills: ['React.js', 'HTML5', 'CSS3', 'JavaScript'],
+      type: 'internship'
     }
   ] as Experience[],
 

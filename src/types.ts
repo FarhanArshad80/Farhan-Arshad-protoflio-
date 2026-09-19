@@ -53,7 +53,7 @@ export interface Experience {
   description: string;
   highlights: string[];
   skills: string[];
-  type: 'full-time' | 'contract' | 'open-source';
+  type: 'full-time' | 'contract' | 'internship' | 'open-source';
 }
 
 export interface Education {
