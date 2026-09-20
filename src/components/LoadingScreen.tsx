@@ -34,17 +34,17 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
           animate={{ rotate: 360 }}
           transition={{ duration: 2.6, repeat: Infinity, ease: 'linear' }}
           className="absolute inset-0 rounded-full"
-          style={{ background: 'conic-gradient(from 0deg, #0F172A 0%, #64748B 45%, transparent 55%, transparent 100%)' }}
+          style={{ background: 'conic-gradient(from 0deg, #2563EB 0%, #60A5FA 45%, transparent 55%, transparent 100%)' }}
         />
         <div
           className="absolute inset-0 rounded-full"
-          style={{ background: 'conic-gradient(from 0deg, rgba(15,23,42,0.06) 100%)' }}
+          style={{ background: 'conic-gradient(from 0deg, rgba(37,99,235,0.10) 100%)' }}
         />
         <motion.div
           initial={{ scale: 0.75, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.55, ease: 'easeOut' }}
-          className="absolute inset-[5px] rounded-full overflow-hidden border border-[#0F172A]/10"
+          className="absolute inset-[5px] rounded-full overflow-hidden border border-[#2563EB]/20"
         >
           <img src={profileImage} alt="Farhan Arshad" className="w-full h-full object-cover object-top" />
         </motion.div>
@@ -72,12 +72,12 @@ export const LoadingScreen: React.FC<Props> = ({ onComplete }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.55 }}
-        className="relative w-44 h-px bg-[#0F172A]/10 rounded-full overflow-hidden"
+        className="relative w-44 h-px bg-[#2563EB]/15 rounded-full overflow-hidden"
       >
         <div
           ref={barRef}
           className="absolute inset-y-0 left-0 rounded-full"
-          style={{ width: '0%', background: 'linear-gradient(90deg, #0F172A, #64748B)' }}
+          style={{ width: '0%', background: 'linear-gradient(90deg, #2563EB, #60A5FA)' }}
         />
       </motion.div>
     </motion.div>
